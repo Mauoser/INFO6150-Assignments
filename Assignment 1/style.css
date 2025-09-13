@@ -1,4 +1,3 @@
-/* General page styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
@@ -8,31 +7,25 @@ body {
   padding: 0;
 }
 
-/* Section titles */
 h2 {
-  color: #d6336c; /* a nice anime-inspired pink */
+  color: #d6336c;
   border-bottom: 2px solid #eee;
   padding-bottom: 5px;
 }
 
-/* Paragraph text */
 p {
   margin-bottom: 15px;
 }
 
-/* Section spacing */
 section {
   padding: 20px;
   max-width: 800px;
   margin: auto;
 }
 
-table, th, td {
-  border:1px solid black;
-}
 
 aside {
-  width: 30%;
+  width: 40%;
   padding-left: 15px;
   margin-left: 15px;
   float: right;
@@ -40,14 +33,12 @@ aside {
   background-color: lightgray;
 }
 
-/* Center header and footer content */
 header, footer {
   text-align: center;
 }
 
-/* Optional: center nav links horizontally */
 header nav a {
-  margin: 0 15px; /* spacing between links */
+  margin: 0 15px;
   display: inline-block;
   text-decoration: none;
   color: #333;
@@ -55,5 +46,46 @@ header nav a {
 }
 
 header nav a:hover {
-  color: #d6336c; /* example hover color */
+  color: #d6336c;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+td figure {
+  margin: 0;
+}
+
+td figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+table th:first-child,
+table td:first-child {
+  width: 50%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+  width: 40%;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+  width: 10%;
 }
