@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Anime Pilgrimage</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Anime Pilgrimage</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="locations.html">Locations</a>
+        <a href="about.html">About Us</a>
+        <a href="signup.html">Sign Up</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Create Your Account</h2>
+        <p>
+          Sign up to join our community, receive updates, and explore anime
+          pilgrimage locations in Japan!
+        </p>
+
+        <form action="submit_signup.php" method="post">
+          <label for="username">Username:</label><br />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+          /><br /><br />
+
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <label for="password">Password:</label><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+          /><br /><br />
+
+          <label for="favorite">Favorite Anime:</label><br />
+          <input
+            list="anime-list"
+            id="favorite"
+            name="favorite"
+            placeholder="Select or type..."
+          />
+          <datalist id="anime-list">
+            <option value="Your Name"></option>
+            <option value="Spirited Away"></option>
+            <option value="Jujutsu Kaisen"></option>
+            <option value="Naruto"></option>
+            <option value="Hunter x Hunter"></option></datalist
+          ><br /><br />
+
+          <button type="submit">Sign Up</button>
+        </form>
+      </section>
+
+      <aside>
+        <h3>Why Sign Up?</h3>
+        <ul>
+          <li>Get updates on new anime locations.</li>
+          <li>Access exclusive travel guides.</li>
+          <li>Join a community of anime fans who love Japan.</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <p>
+        Contact us:
+        <a href="mailto:info@animepilgrimage.com">info@animepilgrimage.com</a> |
+        <a href="tel:+819012345678">+81 90-1234-5678</a>
+      </p>
+      <p>&copy; 2025 Anime Pilgrimage</p>
+    </footer>
+  </body>
+</html>
