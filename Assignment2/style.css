@@ -21,6 +21,9 @@ body {
 }
 
 header {
+  position: sticky;   /* Makes header stick */
+  top: 0;             /* Sticks to the top of the viewport */
+  z-index: 1000;      /* Keeps it above other content */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,6 +31,7 @@ header {
   color: #fff;
   padding: 15px 20px;
   flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* subtle shadow for separation */
 }
 
 header h1 {
