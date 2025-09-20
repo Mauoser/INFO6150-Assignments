@@ -11,13 +11,20 @@
     <header>
       <h1>Lei Zhang</h1>
       <nav>
-        <a href="#about">About Me</a>
+        <a href="#profile">Profile</a>
+        <a href="#about">About</a>
         <a href="#education">Education</a>
         <a href="#projects">Projects</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
+
+    <section id="profile" class="profile">
+      <img src="images/profile.jpg" alt="Lei Zhang" class="profile-photo" />
+      <h2>Lei Zhang</h2>
+      <p>Master of Science in Information Systems | Full-Stack Developer</p>
+    </section>
 
     <section id="about">
       <h1>About Me</h1>
@@ -66,7 +73,7 @@
       <div class="gallery">
         <figure>
           <a href="https://www.bunpofy.me/" target="_blank">
-          <img src="images/bunpofy.png" alt="Bunpofy" />
+            <img src="images/bunpofy.png" alt="Bunpofy" />
           </a>
           <figcaption>
             <h3>Bunpofy</h3>
@@ -85,7 +92,7 @@
         </figure>
         <figure>
           <a href="https://fantasy-fleet.onrender.com/" target="_blank">
-          <img src="images/fantasy-fleet.png" alt="Fantasy Fleet" />
+            <img src="images/fantasy-fleet.png" alt="Fantasy Fleet" />
           </a>
           <figcaption>
             <h3>Fantasy Fleet</h3>
@@ -114,7 +121,6 @@
               directly from their favorite anime. It's the perfect platform for
               anime fans to embark on their own anime pilgrimage!
             </p>
-            </div>
           </figcaption>
         </figure>
       </div>
@@ -122,17 +128,37 @@
 
     <section id="testimonials">
       <h2>Testimonials</h2>
-      <div class="testimonials">
-        <div class="testimonial">
-          <p>
-            "Lei is a great developer to work with! He's reliable and creative!"
-          </p>
-          <span>- Ryuji Sakamoto</span>
-        </div>
-        <div class="testimonial">
-          <p>"Very professional and delivered the project on time."</p>
-          <span>- Ann Takamaki</span>
-        </div>
+      <div class="testimonial-grid">
+        <figure>
+          <img
+            src="images/ryuji-sakamoto.jpg"
+            alt="Ryuji Sakamoto"
+            class="testimonial-photo"
+          />
+          <figcaption>
+            <h3>Ryuji Sakamoto</h3>
+            <p>CEO at Sukiya</p>
+            <blockquote>
+              "Lei was fantastic to work with! He delivered the project on time
+              and exceeded expectations."
+            </blockquote>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="images/ann-takamaki.jpg"
+            alt="Ann Takamaki"
+            class="testimonial-photo"
+          />
+          <figcaption>
+            <h3>Ann Takamaki</h3>
+            <p>CEO at Matsuya</p>
+            <blockquote>
+              "Professional, reliable, and very talented. Highly recommend!"
+            </blockquote>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
