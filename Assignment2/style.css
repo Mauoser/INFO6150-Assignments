@@ -57,13 +57,14 @@ h2 {
 }
 
 .profile {
+  margin: 30px;
   text-align: center;
   flex: 1 1 65%;
 }
 
 .profile-photo {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ddd;
@@ -78,4 +79,307 @@ h2 {
 .profile p {
   font-size: 1rem;
   color: #555;
+}
+
+.skills {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1 1 30%;
+  max-width: 250px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.skills h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.skills ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.skills li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.skills li:last-child {
+  border-bottom: none;
+}
+
+article {
+  flex: 1 1 65%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table th,
+table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background: #333;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+table tr:hover {
+  background: #e6f7ff;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  flex: 1 1 100%;
+}
+
+.gallery figure {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.gallery a {
+  display: block;
+}
+
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery a:hover img {
+  transform: scale(1.05);
+}
+
+.gallery figcaption {
+  padding: 15px;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.gallery figcaption h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.gallery figcaption p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.testimonials {
+  padding: 40px 20px;
+  background: #f9f9f9;
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.testimonial-grid figure {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.testimonial-grid figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.testimonial-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-grid figure:hover .testimonial-photo {
+  transform: scale(1.05);
+}
+
+.testimonial-grid h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.testimonial-grid p {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+form {
+  gap: 15px;
+  max-width: 500px;
+  margin: 20px auto;
+  width: 100%;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  width: 150px;
+  align-self: flex-start;
+  padding: 10px;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #555;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 15px;
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .gallery figure,
+  .testimonial-grid figure {
+    flex: 1 1 100%;
+  }
+
+  .skills {
+    max-width: 100%;
+    margin: 0 auto 20px;
+  }
+
+  button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+@media (max-width: 375px) {
+  body {
+    padding: 5px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+   form {
+    padding: 0 10px;
+  }
+
+    input,
+  textarea {
+    font-size: 0.95rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
 }
