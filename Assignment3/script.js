@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let deleteCell = headerRow.cells[8];
     let editCell = headerRow.cells[9];
     let selectedRow = checkbox.closest("tr");
+    let submitButton = document.querySelector(
+      "button[onclick='submitAward()']"
+    );
 
     if (checkbox.checked) {
       // Highlight row
@@ -72,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // Show header buttons
       deleteCell.style.display = "table-cell";
       editCell.style.display = "table-cell";
+
+      // Enable submit button
+      submitButton.disabled = false;
     } else {
       // Un-highlight row
       selectedRow.style.backgroundColor = "white";
@@ -95,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Only hide if none are checked
         deleteCell.style.display = "none";
         editCell.style.display = "none";
+        submitButton.disabled = true;
       }
     }
   };
