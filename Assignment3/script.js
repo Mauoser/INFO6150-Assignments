@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addStudent = addStudent;
 
         window.onClickCheckbox = function (checkbox) {
+        let table = document.getElementById("myTable");
+        let headerRow = table.querySelector("thead tr");
+        let deleteCell = headerRow.cells[8];
+        let editCell = headerRow.cells[9];
         let selectedRow = checkbox.closest("tr");
         if (checkbox.checked) {
             selectedRow.style.backgroundColor = "yellow";
@@ -54,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
             let deleteButton = document.createElement("td");
             deleteButton.innerHTML = `<button type="button" onclick="onClickDelete(this)">Delete</button>`;
             selectedRow.appendChild(deleteButton);
+            deleteCell.style.display = "table-cell";
+            editCell.style.display = "table-cell";
+
         } else {
             selectedRow.style.backgroundColor = "white";
             let deleteButton = selectedRow.querySelector("button");
