@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let newRow = document.createElement("tr");
         let newCheckboxCell = document.createElement("td");
-        newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)">`;
+        newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)"><br><img src="images/arrow.png" alt="Open" width="30" height="30" onclick="onClickOpen(this)">`;
 
         let newStudentCell = document.createElement("td");
         newStudentCell.textContent = `Student ${parseInt(lastRowIndex) + 1}`;
@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let newBudgetCell = document.createElement("td");
         newBudgetCell.textContent = budget;
 
+        let newPercentageCell = document.createElement("td");
+        newPercentageCell.textContent = `100%`;
+
         newRow.appendChild(newCheckboxCell);
         newRow.appendChild(newStudentCell);
         newRow.appendChild(newAdvisorCell);
@@ -37,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newRow.appendChild(newSemesterCell);
         newRow.appendChild(newTypeCell);
         newRow.appendChild(newBudgetCell);
+        newRow.appendChild(newPercentageCell);
         tbody.appendChild(newRow);
     }
 
