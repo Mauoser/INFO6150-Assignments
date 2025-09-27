@@ -3,38 +3,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let table = document.getElementById("myTable");
     let tbody = table.querySelector("tbody");
 
-    //let lastRow = tbody.lastElementChild;
+    // Count how many "studentRow" exist right now
+    let studentRows = tbody.querySelectorAll('tr[id^="studentRow"]');
+    let newIndex = studentRows.length + 1; // Always next number in sequence
 
-    //let lastRow = document.querySelector("#studentRow");
-    let firstRow = document.querySelectorAll('[id^="studentRow"]');
-    let lastRow = firstRow[firstRow.length - 1];
-
-    let studentCell = lastRow?.children[1];
-    let lastRowIndex = studentCell
-      ? parseInt(studentCell.textContent.split(" ")[1])
-      : 0;
-
+    // Create new row
     let newRow = document.createElement("tr");
-    //newRow.setAttribute("id", "studentRow");
-    newRow.setAttribute("id", "studentRow " + (parseInt(lastRowIndex) + 1));
-    console.log(lastRowIndex);
+    newRow.setAttribute("id", "studentRow " + newIndex);
 
     let newCheckboxCell = document.createElement("td");
-    newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)"><br><input type="image" src="images/arrow.png" alt="Open" width="30" height="30" onclick="onClickOpen(this)">`;
+    newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)">
+    <br><input type="image" src="images/arrow.png" alt="Open" width="30" height="30" onclick="onClickOpen(this)">`;
 
     let studentDetails = document.createElement("tr");
-    studentDetails.innerHTML = `<td colspan="8"><div>Student ${
-      parseInt(lastRowIndex) + 1
-    } Details:<br><br>Award Details: Honors Student<br>Fall 1-2024 (TA)<br>Comments: Outstanding<br>Award Status: A</div></td>`;
-
-    console.log(studentDetails);
+    studentDetails.innerHTML = `<td colspan="8"><div>Student ${newIndex} Details:<br><br>
+    Award Details: Honors Student<br>
+    Fall 1-2024 (TA)<br>
+    Comments: Outstanding<br>
+    Award Status: A</div></td>`;
     studentDetails.style.display = "none";
 
     let newStudentCell = document.createElement("td");
-    newStudentCell.textContent = `Student ${parseInt(lastRowIndex) + 1}`;
+    newStudentCell.textContent = `Student ${newIndex}`;
 
     let newAdvisorCell = document.createElement("td");
-    newAdvisorCell.textContent = `Advisor ${parseInt(lastRowIndex) + 1}`;
+    newAdvisorCell.textContent = `Advisor ${newIndex}`;
 
     let newAwardCell = document.createElement("td");
     newAwardCell.textContent = `Approved`;
@@ -45,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let newTypeCell = document.createElement("td");
     newTypeCell.textContent = `TA`;
 
-    let budget = 12345 + lastRowIndex * 11111;
+    let budget = 12345 + (newIndex - 1) * 11111;
     let newBudgetCell = document.createElement("td");
     newBudgetCell.textContent = budget;
 
@@ -62,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     newRow.appendChild(newPercentageCell);
 
     if (tbody.appendChild(newRow) && tbody.appendChild(studentDetails)) {
-      alert(`Student ${parseInt(lastRowIndex) + 1} Record added successfully`);
+      alert(`Student ${newIndex} Record added successfully`);
     } else {
       alert("Error in adding student record");
     }
@@ -136,10 +129,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let studentCell = selectedRow.children[1];
     let index = studentCell.textContent.split(" ")[1];
     let nextRow = selectedRow.nextElementSibling;
+
     selectedRow.remove();
     nextRow.remove();
 
     alert(`Student ${index} Record deleted successfully`);
+
+    reindexStudents();
   };
 
   window.onClickEdit = function (editButton) {
@@ -163,4 +159,29 @@ document.addEventListener("DOMContentLoaded", function () {
       nextRow.style.display = "none";
     }
   };
+
+  function reindexStudents() {
+    let table = document.getElementById("myTable");
+    let tbody = table.querySelector("tbody");
+    let studentRows = tbody.querySelectorAll('tr[id^="studentRow"]');
+
+    let count = 1;
+    studentRows.forEach((row) => {
+      row.id = "studentRow " + count;
+      row.children[1].textContent = `Student ${count}`;
+      row.children[2].textContent = `Advisor ${count}`;
+      // Update details row
+      let detailsRow = row.nextElementSibling;
+      if (detailsRow) {
+        detailsRow.querySelector(
+          "div"
+        ).innerHTML = `Student ${count} Details:<br><br>
+        Award Details: Honors Student<br>
+        Fall 1-2024 (TA)<br>
+        Comments: Outstanding<br>
+        Award Status: A`;
+      }
+      count++;
+    });
+  }
 });
