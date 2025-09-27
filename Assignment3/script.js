@@ -60,8 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
     newRow.appendChild(newTypeCell);
     newRow.appendChild(newBudgetCell);
     newRow.appendChild(newPercentageCell);
-    tbody.appendChild(newRow);
-    tbody.appendChild(studentDetails);
+
+    if (tbody.appendChild(newRow) && tbody.appendChild(studentDetails)) {
+      alert(`Student ${parseInt(lastRowIndex) + 1} Record added successfully`);
+    } else {
+      alert("Error in adding student record");
+    }
   };
 
   window.addStudent = addStudent;
@@ -153,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedRow = image.closest("tr");
     let nextRow = selectedRow.nextElementSibling;
 
-    if (nextRow.style.display === "none") {
+    if (nextRow.style.display == "none") {
       nextRow.style.display = "table-row";
     } else {
       nextRow.style.display = "none";
