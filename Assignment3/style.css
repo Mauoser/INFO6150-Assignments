@@ -38,3 +38,13 @@ button {
     margin: 0 auto;
     cursor: pointer;
 }
+
+button:disabled {
+  background-color: gray;
+  color: white;
+}
+
+div {
+  text-align: left;
+  padding: 5px;
+};

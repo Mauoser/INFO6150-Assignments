@@ -3,15 +3,32 @@ document.addEventListener("DOMContentLoaded", function () {
     let table = document.getElementById("myTable");
     let tbody = table.querySelector("tbody");
 
-    let lastRow = tbody.lastElementChild;
+    //let lastRow = tbody.lastElementChild;
+
+    //let lastRow = document.querySelector("#studentRow");
+    let firstRow = document.querySelectorAll('[id^="studentRow"]');
+    let lastRow = firstRow[firstRow.length - 1];
+
     let studentCell = lastRow?.children[1];
     let lastRowIndex = studentCell
       ? parseInt(studentCell.textContent.split(" ")[1])
       : 0;
 
     let newRow = document.createElement("tr");
+    //newRow.setAttribute("id", "studentRow");
+    newRow.setAttribute("id", "studentRow " + (parseInt(lastRowIndex) + 1));
+    console.log(lastRowIndex);
+
     let newCheckboxCell = document.createElement("td");
-    newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)"><br><img src="images/arrow.png" alt="Open" width="30" height="30" onclick="onClickOpen(this)">`;
+    newCheckboxCell.innerHTML = `<input type="checkbox" onclick="onClickCheckbox(this)"><br><input type="image" src="images/arrow.png" alt="Open" width="30" height="30" onclick="onClickOpen(this)">`;
+
+    let studentDetails = document.createElement("tr");
+    studentDetails.innerHTML = `<td colspan="8"><div>Student ${
+      parseInt(lastRowIndex) + 1
+    } Details:<br><br>Award Details: Honors Student<br>Fall 1-2024 (TA)<br>Comments: Outstanding<br>Award Status: A</div></td>`;
+
+    console.log(studentDetails);
+    studentDetails.style.display = "none";
 
     let newStudentCell = document.createElement("td");
     newStudentCell.textContent = `Student ${parseInt(lastRowIndex) + 1}`;
@@ -44,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     newRow.appendChild(newBudgetCell);
     newRow.appendChild(newPercentageCell);
     tbody.appendChild(newRow);
+    tbody.appendChild(studentDetails);
   };
 
   window.addStudent = addStudent;
@@ -78,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Enable submit button
       submitButton.disabled = false;
+      submitButton.style.backgroundColor = "orange";
     } else {
       // Un-highlight row
       selectedRow.style.backgroundColor = "white";
@@ -102,6 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteCell.style.display = "none";
         editCell.style.display = "none";
         submitButton.disabled = true;
+        submitButton.style.backgroundColor = "grey";
+        submitButton.style.color = "white";
       }
     }
   };
@@ -110,7 +131,21 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedRow = deleteButton.closest("tr");
     let studentCell = selectedRow.children[1];
     let index = studentCell.textContent.split(" ")[1];
+    let nextRow = selectedRow.nextElementSibling;
     selectedRow.remove();
+    nextRow.remove();
+
     alert(`Student ${index} Record deleted successfully`);
+  };
+
+  window.onClickOpen = function (image) {
+    let selectedRow = image.closest("tr");
+    let nextRow = selectedRow.nextElementSibling;
+
+    if (nextRow.style.display === "none") {
+      nextRow.style.display = "table-row";
+    } else {
+      nextRow.style.display = "none";
+    }
   };
 });
