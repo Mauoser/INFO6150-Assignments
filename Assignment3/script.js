@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       editCell.style.display = "table-cell";
 
       // Enable submit button
+      submitButton.style.color = "white";
       submitButton.disabled = false;
       submitButton.style.backgroundColor = "orange";
     } else {
