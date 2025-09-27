@@ -136,6 +136,26 @@ document.addEventListener("DOMContentLoaded", function () {
     alert(`Student ${index} Record deleted successfully`);
 
     reindexStudents();
+
+    // After deleting, check if any checkboxes are still selected
+    let table = document.getElementById("myTable");
+    let submitButton = document.querySelector(
+      "button[onclick='submitAward()']"
+    );
+    let headerRow = table.querySelector("thead tr");
+    let deleteCell = headerRow.cells[8];
+    let editCell = headerRow.cells[9];
+
+    let anyChecked =
+      table.querySelectorAll('tbody input[type="checkbox"]:checked').length > 0;
+
+    if (!anyChecked) {
+      deleteCell.style.display = "none";
+      editCell.style.display = "none";
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "grey";
+      submitButton.style.color = "white";
+    }
   };
 
   window.onClickEdit = function (editButton) {
