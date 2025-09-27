@@ -45,4 +45,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addStudent = addStudent;
+
+        window.onClickCheckbox = function (checkbox) {
+        let selectedRow = checkbox.closest("tr");
+        if (checkbox.checked) {
+            selectedRow.style.backgroundColor = "yellow";
+
+            let deleteButton = document.createElement("td");
+            deleteButton.innerHTML = `<button type="button" onclick="onClickDelete(this)">Delete</button>`;
+            selectedRow.appendChild(deleteButton);
+        } else {
+            selectedRow.style.backgroundColor = "white";
+            let deleteButton = selectedRow.querySelector("button");
+            let deleteButtonCell = deleteButton.closest("td");
+            selectedRow.removeChild(deleteButtonCell);
+        }
+    }
+
   });
