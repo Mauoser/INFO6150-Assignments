@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let table = document.getElementById("myTable");
     let tbody = table.querySelector("tbody");
 
-    // Count how many "studentRow" exist right now
+    // Count how many studentRows exist right now
     let studentRows = tbody.querySelectorAll('tr[id^="studentRow"]');
-    let newIndex = studentRows.length + 1; // Always next number in sequence
+    let newIndex = studentRows.length + 1; // Next number in sequence
 
     // Create new row
     let newRow = document.createElement("tr");
@@ -158,6 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       nextRow.style.display = "none";
     }
+  };
+
+  window.submitAward = function (submitAward) {
+    alert("Selected awards submitted successfully");
   };
 
   function reindexStudents() {
