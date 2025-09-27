@@ -98,4 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
+
+  window.onClickDelete = function (deleteButton) {
+    let selectedRow = deleteButton.closest("tr");
+    let studentCell = selectedRow.children[1];
+    let index = studentCell.textContent.split(" ")[1];
+    selectedRow.remove();
+    alert(`Student ${index} Record deleted successfully`);
+  };
 });
