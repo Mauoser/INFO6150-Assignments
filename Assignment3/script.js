@@ -59,12 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
       // Highlight row
       selectedRow.style.backgroundColor = "yellow";
 
-      // Add Delete button (only if not already added)
-      if (!selectedRow.querySelector("button")) {
-        let deleteButton = document.createElement("td");
-        deleteButton.innerHTML = `<button type="button" onclick="onClickDelete(this)">Delete</button>`;
-        selectedRow.appendChild(deleteButton);
-      }
+      // Add delete button
+      let deleteButton = document.createElement("td");
+      deleteButton.innerHTML = `<button type="button" onclick="onClickDelete(this)">Delete</button>`;
+      selectedRow.appendChild(deleteButton);
+
+      // Add edit button
+      let editButton = document.createElement("td");
+      editButton.innerHTML = `<button type="button" onclick="onClickEdit(this)">Edit</button>`;
+      selectedRow.appendChild(editButton);
 
       // Show header buttons
       deleteCell.style.display = "table-cell";
@@ -73,14 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
       // Un-highlight row
       selectedRow.style.backgroundColor = "white";
 
-      // Remove Delete button cell
+      // Remove delete button cell
       let deleteButton = selectedRow.querySelector("button");
-      if (deleteButton) {
-        let deleteButtonCell = deleteButton.closest("td");
-        selectedRow.removeChild(deleteButtonCell);
-      }
+      let deleteButtonCell = deleteButton.closest("td");
+      selectedRow.removeChild(deleteButtonCell);
 
-      // Check if ANY checkboxes are still checked
+      // Remove edit button cell
+      let editButton = selectedRow.querySelector("button");
+      let editButtonCell = editButton.closest("td");
+      selectedRow.removeChild(editButtonCell);
+
+      // Check if any checkboxes are still checked
       let anyChecked =
         table.querySelectorAll('tbody input[type="checkbox"]:checked').length >
         0;
