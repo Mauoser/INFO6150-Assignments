@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let lastRow = tbody.lastElementChild;
         let studentCell = lastRow?.children[1];
+        console.log(studentCell);
         let lastRowIndex = studentCell ? parseInt(studentCell.textContent.split(" ")[1]) : 0;
+        console.log(lastRowIndex);
 
         let newRow = document.createElement("tr");
         let newCheckboxCell = document.createElement("td");
@@ -20,10 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
         let newAwardCell = document.createElement("td");
         newAwardCell.textContent = `Approved`;
 
+        let newSemesterCell = document.createElement("td");
+        newSemesterCell.textContent = `Fall`;
+
+        let newTypeCell = document.createElement("td");
+        newTypeCell.textContent = `TA`;
+
+
         newRow.appendChild(newCheckboxCell);
         newRow.appendChild(newStudentCell);
         newRow.appendChild(newAdvisorCell);
         newRow.appendChild(newAwardCell);
+        newRow.appendChild(newSemesterCell);
+        newRow.appendChild(newTypeCell);
         tbody.appendChild(newRow);
     }
 
