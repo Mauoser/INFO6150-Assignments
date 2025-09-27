@@ -138,6 +138,17 @@ document.addEventListener("DOMContentLoaded", function () {
     alert(`Student ${index} Record deleted successfully`);
   };
 
+  window.onClickEdit = function (editButton) {
+    let selectedRow = editButton.closest("tr");
+    let studentCell = selectedRow.children[1];
+    let index = studentCell.textContent.split(" ")[1];
+
+    let edit = prompt(`Edit details of Student ${index}`);
+    if (edit != null && edit != "") {
+      alert(`Student ${index} data updated successfully`);
+    }
+  };
+
   window.onClickOpen = function (image) {
     let selectedRow = image.closest("tr");
     let nextRow = selectedRow.nextElementSibling;
