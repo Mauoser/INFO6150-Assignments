@@ -7,6 +7,7 @@ let zipcode = document.getElementById("zipcode");
 let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 let comments = document.getElementById("comments");
 let form = document.getElementById("feedbackForm");
+let submit = document.getElementById("submit");
 
 const regExName = /^[A-Za-z]{2,20}$/;
 const regExEmail = /^[a-zA-Z0-9._%+-]+@northeastern\.edu$/;
@@ -28,6 +29,7 @@ let isEmailValid = false;
 let isPhoneValid = false;
 let isZipcodeValid = false;
 let isCommentsValid = false;
+let isCheckboxValid = false;
 
 function validateForm(event) {
   event.preventDefault();
@@ -92,4 +94,17 @@ phoneNumber.addEventListener("input", function () {
     formattedValue = `(${value}`;
   }
   phoneNumber.value = formattedValue;
+});
+
+function validateCheckboxes() {
+  const checkedBoxes = document.querySelectorAll(
+    'input[name="source"]:checked'
+  );
+  isCheckboxValid = checkedBoxes.length > 0;
+  const errorCheckbox = document.getElementById("error-source");
+  errorCheckbox.style.display = isCheckboxValid ? "none" : "block";
+}
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", validateCheckboxes);
 });
