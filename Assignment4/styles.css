@@ -1,5 +1,19 @@
 .error {
-    color: #dc2626;
-    font-size: 0.85rem;
-    display: none;
+  color: #dc2626;
+  font-size: 0.85rem;
+  display: none;
+}
+
+label {
+  float: left;
+  width: 150px;
+}
+
+#container {
+  width: 700px;
+  margin: auto;
+  background-color: beige;
+}
+main {
+  padding: 50px;
 }

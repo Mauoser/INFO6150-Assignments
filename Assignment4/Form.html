@@ -3,20 +3,6 @@
   <head>
     <link rel="stylesheet" href="styles.css" />
     <title>Feedback</title>
-    <style>
-      label {
-        float: left;
-        width: 150px;
-      }
-      #container {
-        width: 700px;
-        margin: auto;
-        background-color: beige;
-      }
-      main {
-        padding: 50px;
-      }
-    </style>
   </head>
   <body>
     <div id="container">
@@ -54,8 +40,11 @@
             name="firstName"
             id="firstName"
             placeholder="First Name"
+            maxlength="20"
           />
-          <div class="error" id="error-firstName">Enter a valid first name</div>
+          <div class="error" id="error-firstName">
+            Enter a valid first name between 2-20 characters
+          </div>
           <br /><br />
 
           <label for="lastName">Last Name*:</label>
@@ -64,7 +53,11 @@
             name="lastName"
             id="lastName"
             placeholder="Last Name"
+            maxlength="20"
           />
+          <div class="error" id="error-lastName">
+            Enter a valid last name between 2-20 characters
+          </div>
           <br /><br />
 
           <label for="emailId">Email Id*:</label>
@@ -73,7 +66,9 @@
             name="emailId"
             id="emailId"
             placeholder="yourname@domain.com"
+            maxlength="30"
           />
+          <div class="error" id="error-emailId">Enter a valid email</div>
           <br /><br />
 
           <label for="phoneNumber">Phone Number*:</label>
@@ -81,12 +76,23 @@
             type="text"
             name="phoneNumber"
             id="phoneNumber"
-            placeholder="xxx-xxx-xxxx"
+            placeholder="(xxx) xxx-xxxx"
+            maxlength="14"
           />
+          <div class="error" id="error-phoneNumber">
+            Enter a valid phone number
+          </div>
           <br /><br />
 
           <label for="zipcode">ZipCode*:</label>
-          <input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" />
+          <input
+            type="text"
+            name="zipcode"
+            id="zipcode"
+            placeholder="xxxxx"
+            maxlength="5"
+          />
+          <div class="error" id="error-zipcode">Enter a valid zip code</div>
           <br /><br />
 
           <label for="zipcode">How did you hear*:</label>
@@ -94,7 +100,7 @@
           <input type="checkbox" name="source" value="google" /> Google
           <input type="checkbox" name="source" value="yelp" /> Yelp <br /><br />
 
-          <label for="order">What did you order?</label>
+          <label for="order">What did you order?*</label>
           <select name="order" id="order">
             <option value="volvo">Pizza</option>
             <option value="saab">Hamburger</option>
