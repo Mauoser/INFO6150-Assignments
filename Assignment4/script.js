@@ -24,12 +24,12 @@ comments.addEventListener("input", validate);
 form.addEventListener("submit", validateForm);
 
 let isNameValid = false;
-let isLastNameValid = false;
 let isEmailValid = false;
 let isPhoneValid = false;
 let isZipcodeValid = false;
 let isCommentsValid = false;
 let isCheckboxValid = false;
+let isTitleValid = false;
 
 function validateForm(event) {
   event.preventDefault();
@@ -75,6 +75,7 @@ function validate(event) {
     isCommentsValid = value.trim().match(regComments);
     error.style.display = isCommentsValid ? "none" : "block";
   }
+  enableSubmit();
 }
 
 phoneNumber.addEventListener("input", function () {
@@ -103,8 +104,24 @@ function validateCheckboxes() {
   isCheckboxValid = checkedBoxes.length > 0;
   const errorCheckbox = document.getElementById("error-source");
   errorCheckbox.style.display = isCheckboxValid ? "none" : "block";
+  enableSubmit();
 }
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", validateCheckboxes);
 });
+
+function enableSubmit() {
+  if (
+    isNameValid &&
+    isEmailValid &&
+    isPhoneValid &&
+    isZipcodeValid &&
+    isCheckboxValid &&
+    isCommentsValid
+  ) {
+    submit.disabled = false;
+  } else {
+    submit.disabled = true;
+  }
+}
