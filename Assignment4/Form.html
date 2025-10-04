@@ -95,18 +95,31 @@
           <div class="error" id="error-zipcode">Enter a valid zip code</div>
           <br /><br />
 
+          <label for="streetAddress2">Street Address 2:</label>
+          <input
+            type="text"
+            name="streetAddress2"
+            id="streetAddress2"
+            maxlength="30"
+          />
+          <br /><br />
+
           <label for="zipcode">How did you hear*:</label>
           <input type="checkbox" name="source" value="facebook" /> Facebook
           <input type="checkbox" name="source" value="google" /> Google
-          <input type="checkbox" name="source" value="yelp" /> Yelp <br /><br />
+          <input type="checkbox" name="source" value="yelp" /> Yelp
+          <div class="error" id="error-source">
+            Please check at least one option
+          </div>
+          <br /><br />
 
-          <label for="order">What did you order?*</label>
-          <select name="order" id="order">
-            <option value="volvo">Pizza</option>
-            <option value="saab">Hamburger</option>
-            <option value="mercedes">Steak</option>
-            <option value="audi">Ribs</option>
-            <option value="audi">Pasta</option>
+          <label for="campus">Campus:*</label>
+          <select name="campus" id="campus">
+            <option value="Boston">Boston</option>
+            <option value="Oakland">Oakland</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Toronto">Toronto</option>
+            <option value="London">London</option>
           </select>
           <br /><br />
 
@@ -117,7 +130,11 @@
             placeholder="Your comments"
             rows="5"
             cols="25"
+            maxlength="200"
           ></textarea>
+          <div class="error" id="error-comments">
+            Enter a comment between 10-200 characters
+          </div>
           <br /><br />
           <input type="Submit" />
           <input type="Reset" />

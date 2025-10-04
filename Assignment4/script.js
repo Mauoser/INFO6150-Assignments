@@ -5,19 +5,21 @@ let emailId = document.getElementById("emailId");
 let phoneNumber = document.getElementById("phoneNumber");
 let zipcode = document.getElementById("zipcode");
 let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-let form = document.getElementById("feedbackForm");
 let comments = document.getElementById("comments");
+let form = document.getElementById("feedbackForm");
 
 const regExName = /^[A-Za-z]{2,20}$/;
 const regExEmail = /^[a-zA-Z0-9._%+-]+@northeastern\.edu$/;
 const regExPhone = /^\(\d{3}\)\s\d{3}-\d{4}$/;
 const regZipcode = /^\d{5}$/;
+const regComments = /^.{10,200}$/;
 
 firstName.addEventListener("input", validate);
 lastName.addEventListener("input", validate);
 emailId.addEventListener("input", validate);
 phoneNumber.addEventListener("input", validate);
 zipcode.addEventListener("input", validate);
+comments.addEventListener("input", validate);
 form.addEventListener("submit", validateForm);
 
 let isNameValid = false;
@@ -67,10 +69,13 @@ function validate(event) {
   } else if (fieldId === "zipcode") {
     isZipcodeValid = value.trim().match(regZipcode);
     error.style.display = isZipcodeValid ? "none" : "block";
+  } else if (fieldId === "comments") {
+    isCommentsValid = value.trim().match(regComments);
+    error.style.display = isCommentsValid ? "none" : "block";
   }
 }
 
-phoneNumber.addEventListener("input", function (e) {
+phoneNumber.addEventListener("input", function () {
   let value = phoneNumber.value.replace(/\D/g, "");
   if (value.length > 10) {
     value = value.substring(0, 10);
