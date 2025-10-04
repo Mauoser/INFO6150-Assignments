@@ -36,33 +36,30 @@ let isCampusValid = false;
 
 function validateForm(event) {
   event.preventDefault();
-  if (isEmailValid && isNameValid && isPhoneValid) {
-    radios.forEach((radio) => {
-      radio.checked = false;
-    });
-    firstName.value = "";
-    lastName.value = "";
-    emailId.value = "";
-    phoneNumber.value = "";
-    zipcode.value = "";
-    comments.value = "";
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
 
-    alert("Form submitted successfully!");
+  radios.forEach((radio) => {
+    radio.checked = false;
+  });
+  firstName.value = "";
+  lastName.value = "";
+  emailId.value = "";
+  phoneNumber.value = "";
+  zipcode.value = "";
+  comments.value = "";
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
 
-    isNameValid = false;
-    isEmailValid = false;
-    isPhoneValid = false;
-    isZipcodeValid = false;
-    isCommentsValid = false;
-    isCheckboxValid = false;
-    isTitleValid = false;
-    submit.disabled = true;
-  } else {
-    alert("Please fill out the form correctly before submitting.");
-  }
+  alert("Form submitted successfully!");
+
+  isNameValid = false;
+  isEmailValid = false;
+  isPhoneValid = false;
+  isZipcodeValid = false;
+  isCommentsValid = false;
+  isCheckboxValid = false;
+  isTitleValid = false;
+  submit.disabled = true;
 }
 
 function validate(event) {
@@ -140,7 +137,8 @@ function enableSubmit() {
     isCheckboxValid &&
     isCommentsValid &&
     isTitleValid &&
-    isCampusValid
+    isCampusValid &&
+    isCampusFeedbackValid
   ) {
     submit.disabled = false;
   } else {
@@ -172,24 +170,54 @@ campus.addEventListener("change", function () {
     label.htmlFor = "feedbackCheckbox";
     label.textContent = ` Write feedback for ${selectedCampus}?`;
 
+    const error = document.createElement("div");
+    error.id = "error-campusFeedback";
+    error.className = "error";
+    error.innerHTML = `<label>&#8203;</label>Enter feedback between 10-100 characters`;
+    error.style.display = "none";
+
     campusBox.appendChild(checkbox);
     campusBox.appendChild(label);
+    campusBox.appendChild(error);
 
     checkbox.addEventListener("change", function () {
       const existingField = document.getElementById("campusFeedback");
+      const errorMsg = document.getElementById("error-campusFeedback");
+
       if (existingField) existingField.remove();
 
       if (checkbox.checked) {
         const textarea = document.createElement("textarea");
-        textarea.type = "text";
         textarea.id = "campusFeedback";
         textarea.name = "campusFeedback";
-        textarea.maxLength = 20;
+        textarea.maxLength = 100;
         textarea.placeholder = `Enter feedback for ${selectedCampus}`;
-        textarea.required = true;
-
         campusBox.appendChild(textarea);
+
+        if (errorMsg) {
+          campusBox.appendChild(errorMsg);
+        }
+
+        isCampusFeedbackValid = false;
+        errorMsg.style.display = "block";
+
+        textarea.addEventListener("input", function () {
+          const len = textarea.value.trim().length;
+          if (len >= 10 && len <= 100) {
+            errorMsg.style.display = "none";
+            isCampusFeedbackValid = true;
+          } else {
+            errorMsg.style.display = "block";
+            isCampusFeedbackValid = false;
+          }
+          enableSubmit();
+        });
+      } else {
+        isCampusFeedbackValid = true;
+        if (errorMsg) errorMsg.style.display = "none";
       }
+
+      enableSubmit();
     });
   }
 });
