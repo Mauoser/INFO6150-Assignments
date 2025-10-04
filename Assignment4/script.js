@@ -8,6 +8,7 @@ let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 let comments = document.getElementById("comments");
 let form = document.getElementById("feedbackForm");
 let submit = document.getElementById("submit");
+let streetAddress2 = document.getElementById("streetAddress2");
 
 const regExName = /^[A-Za-z]{2,20}$/;
 const regExEmail = /^[a-zA-Z0-9._%+-]+@northeastern\.edu$/;
@@ -133,3 +134,10 @@ function enableSubmit() {
     submit.disabled = true;
   }
 }
+
+streetAddress2.addEventListener("input", function () {
+  let streetAddress2Counter = document.getElementById("streetAddress2-counter");
+  let currentLength = streetAddress2.value.length;
+  let maxLength = streetAddress2.getAttribute("maxlength");
+  streetAddress2Counter.innerHTML = `<label>&#8203;</label>${currentLength}/${maxLength} characters used`;
+});

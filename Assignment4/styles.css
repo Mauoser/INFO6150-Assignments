@@ -17,3 +17,9 @@ label {
 main {
   padding: 50px;
 }
+
+#streetAddress2-counter {
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 2px;
+}
