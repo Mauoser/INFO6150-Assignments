@@ -33,7 +33,7 @@ let isCommentsValid = false;
 let isCheckboxValid = false;
 let isTitleValid = false;
 let isCampusValid = false;
-let isCampusFeedbackValid = true;
+let isNoteValid = true;
 
 function validateForm(event) {
   event.preventDefault();
@@ -52,7 +52,7 @@ function validateForm(event) {
     .map((cb) => cb.value)
     .join(", ");
   const selectedCampus = campus.value;
-  const campusFeedback = document.getElementById("campusFeedback")?.value || "";
+  const note = document.getElementById("note")?.value || "";
   const comment = comments.value.trim();
 
   const tableContainer = document.getElementById("submission-table-container");
@@ -71,7 +71,7 @@ function validateForm(event) {
     <td>${address2}</td>
     <td>${sources}</td>
     <td>${selectedCampus}</td>
-    <td>${campusFeedback}</td>
+    <td>${note}</td>
     <td>${comment}</td>
   `;
   tbody.appendChild(row);
@@ -90,7 +90,7 @@ function validateForm(event) {
   isCheckboxValid = false;
   isTitleValid = false;
   isCampusValid = false;
-  isCampusFeedbackValid = true;
+  isNoteValid = true;
   submit.disabled = true;
 
   const errors = document.querySelectorAll(".error");
@@ -112,9 +112,6 @@ function validate(event) {
   } else if (fieldId === "phoneNumber") {
     isPhoneValid = value.trim().match(regExPhone);
     error.style.display = isPhoneValid ? "none" : "block";
-  } else if (fieldId === "zipcode") {
-    isZipcodeValid = value.trim().match(regZipcode);
-    error.style.display = isZipcodeValid ? "none" : "block";
   } else if (fieldId === "comments") {
     isCommentsValid = value.trim().match(regComments);
     error.style.display = isCommentsValid ? "none" : "block";
@@ -173,7 +170,7 @@ function enableSubmit() {
     isCommentsValid &&
     isTitleValid &&
     isCampusValid &&
-    isCampusFeedbackValid
+    isNoteValid
   ) {
     submit.disabled = false;
   } else {
@@ -198,17 +195,17 @@ campus.addEventListener("change", function () {
   if (selectedCampus) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.id = "feedbackCheckbox";
-    checkbox.name = "feedbackCheckbox";
+    checkbox.id = "noteCheckbox";
+    checkbox.name = "noteCheckbox";
 
     const label = document.createElement("label");
-    label.htmlFor = "feedbackCheckbox";
-    label.textContent = ` Write feedback for ${selectedCampus}?`;
+    label.htmlFor = "noteCheckbox";
+    label.textContent = `Leave a note for ${selectedCampus}?`;
 
     const error = document.createElement("div");
-    error.id = "error-campusFeedback";
+    error.id = "error-note";
     error.className = "error";
-    error.innerHTML = `<label>&#8203;</label>Enter feedback between 10-100 characters`;
+    error.innerHTML = `<label>&#8203;</label>Enter a note between 5-20 characters`;
     error.style.display = "none";
 
     campusBox.appendChild(checkbox);
@@ -216,39 +213,39 @@ campus.addEventListener("change", function () {
     campusBox.appendChild(error);
 
     checkbox.addEventListener("change", function () {
-      const existingField = document.getElementById("campusFeedback");
-      const errorMsg = document.getElementById("error-campusFeedback");
+      const existingField = document.getElementById("note");
+      const errorMsg = document.getElementById("error-note");
 
       if (existingField) existingField.remove();
 
       if (checkbox.checked) {
         const textarea = document.createElement("textarea");
-        textarea.id = "campusFeedback";
-        textarea.name = "campusFeedback";
-        textarea.maxLength = 100;
-        textarea.placeholder = `Enter feedback for ${selectedCampus}`;
+        textarea.id = "note";
+        textarea.name = "note";
+        textarea.maxLength = 20;
+        textarea.placeholder = `Enter note for ${selectedCampus}`;
         campusBox.appendChild(textarea);
 
         if (errorMsg) {
           campusBox.appendChild(errorMsg);
         }
 
-        isCampusFeedbackValid = false;
+        isNoteValid = false;
         errorMsg.style.display = "block";
 
         textarea.addEventListener("input", function () {
           const len = textarea.value.trim().length;
-          if (len >= 10 && len <= 100) {
+          if (len >= 5 && len <= 20) {
             errorMsg.style.display = "none";
-            isCampusFeedbackValid = true;
+            isNoteValid = true;
           } else {
             errorMsg.style.display = "block";
-            isCampusFeedbackValid = false;
+            isNoteValid = false;
           }
           enableSubmit();
         });
       } else {
-        isCampusFeedbackValid = true;
+        isNoteValid = true;
         if (errorMsg) errorMsg.style.display = "none";
       }
 
@@ -362,4 +359,14 @@ aiButton.addEventListener("click", () => {
 
 chatClose.addEventListener("click", () => {
   chatWindow.style.display = "none";
+});
+
+zipcode.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "");
+  const value = this.value;
+  const error = document.getElementById("error-zipcode");
+  isZipcodeValid = value.trim().match(regZipcode);
+  error.style.display = isZipcodeValid ? "none" : "block";
+
+  enableSubmit();
 });
