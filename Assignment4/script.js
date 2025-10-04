@@ -9,6 +9,7 @@ let comments = document.getElementById("comments");
 let form = document.getElementById("feedbackForm");
 let submit = document.getElementById("submit");
 let streetAddress2 = document.getElementById("streetAddress2");
+let campus = document.getElementById("campus");
 
 const regExName = /^[A-Za-z]{2,20}$/;
 const regExEmail = /^[a-zA-Z0-9._%+-]+@northeastern\.edu$/;
@@ -31,6 +32,7 @@ let isZipcodeValid = false;
 let isCommentsValid = false;
 let isCheckboxValid = false;
 let isTitleValid = false;
+let isCampusValid = false;
 
 function validateForm(event) {
   event.preventDefault();
@@ -140,4 +142,41 @@ streetAddress2.addEventListener("input", function () {
   let currentLength = streetAddress2.value.length;
   let maxLength = streetAddress2.getAttribute("maxlength");
   streetAddress2Counter.innerHTML = `<label>&#8203;</label>${currentLength}/${maxLength} characters used`;
+});
+
+campus.addEventListener("change", function () {
+  const campusBox = document.getElementById("campus-box");
+  const selectedCampus = campus.value;
+  campusBox.innerHTML = "";
+
+  if (selectedCampus) {
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "feedbackCheckbox";
+    checkbox.name = "feedbackCheckbox";
+
+    const label = document.createElement("label");
+    label.htmlFor = "feedbackCheckbox";
+    label.textContent = ` Write feedback for ${selectedCampus}?`;
+
+    campusBox.appendChild(checkbox);
+    campusBox.appendChild(label);
+
+    checkbox.addEventListener("change", function () {
+      const existingField = document.getElementById("campusFeedback");
+      if (existingField) existingField.remove();
+
+      if (checkbox.checked) {
+        const textarea = document.createElement("textarea");
+        textarea.type = "text";
+        textarea.id = "campusFeedback";
+        textarea.name = "campusFeedback";
+        textarea.maxLength = 20;
+        textarea.placeholder = `Enter feedback for ${selectedCampus}`;
+        textarea.required = true;
+
+        campusBox.appendChild(textarea);
+      }
+    });
+  }
 });
