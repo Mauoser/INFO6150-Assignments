@@ -129,7 +129,9 @@ function enableSubmit() {
     isPhoneValid &&
     isZipcodeValid &&
     isCheckboxValid &&
-    isCommentsValid
+    isCommentsValid &&
+    isTitleValid &&
+    isCampusValid
   ) {
     submit.disabled = false;
   } else {
@@ -148,6 +150,9 @@ campus.addEventListener("change", function () {
   const campusBox = document.getElementById("campus-box");
   const selectedCampus = campus.value;
   campusBox.innerHTML = "";
+
+  isCampusValid = selectedCampus !== "";
+  enableSubmit();
 
   if (selectedCampus) {
     const checkbox = document.createElement("input");
