@@ -76,23 +76,18 @@ main {
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#chat-messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  border-bottom: 1px solid #ccc;
+  padding: 1%;
 }
 
 #chat-input {
   padding: 8px;
-  border: none;
+  border: 1px;
   border-top: 1px solid #ccc;
   flex-shrink: 0;
 }
 
 #chat-send {
+  margin: 2px;
   padding: 8px;
   border: none;
   background-color: #007bff;

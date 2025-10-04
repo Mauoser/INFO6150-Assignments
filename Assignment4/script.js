@@ -290,6 +290,18 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
 
+const answers = {
+  email:
+    "You must use your Northeastern email (example: student@northeastern.edu).",
+  phone: "The phone number must be in the format (XXX) XXX-XXXX.",
+  zip: "The zip code must be exactly 5 digits.",
+  required: "All fields are required except Street Address 2.",
+  street:
+    "No, it is optional. If left blank, it will remain empty in the results table.",
+  address:
+    "No, it is optional. If left blank, it will remain empty in the results table.",
+};
+
 aiButton.addEventListener("click", () => {
   chatWindow.style.display =
     chatWindow.style.display === "none" ? "flex" : "none";
@@ -301,20 +313,29 @@ function addMessage(sender, text) {
   msg.textContent = `${sender}: ${text}`;
   msg.style.margin = "5px 0";
   msg.style.wordWrap = "break-word";
-  msg.style.fontSize = "14px";
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
+  const userMessage = chatInput.value.trim();
+  if (!userMessage) return;
 
-  addMessage("You", text);
+  addMessage("You", userMessage);
+
+  let response = "Sorry, I don’t know that yet. Please check the instructions.";
+  const lowerMsg = userMessage.toLowerCase();
+
+  for (let key in answers) {
+    if (lowerMsg.includes(key)) {
+      response = answers[key];
+      break;
+    }
+  }
 
   setTimeout(() => {
-    addMessage("AI", "This is a sample response to: " + text);
-  }, 500);
+    addMessage("AI", response);
+  }, 300);
 
   chatInput.value = "";
 }
