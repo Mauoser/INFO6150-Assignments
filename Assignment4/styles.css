@@ -52,7 +52,7 @@ main {
 }
 
 #ai-button {
-  background-color: royalblue;
+  background-color: #007bff;
   color: white;
   margin-left: 80%;
   border-radius: 16px;
@@ -61,4 +61,41 @@ main {
   text-align: center;
   text-decoration: none;
   font-size: 12px;
+  cursor: pointer;
+}
+
+#chat-window {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+#chat-input {
+  padding: 8px;
+  border: none;
+  border-top: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+#chat-send {
+  padding: 8px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
 }

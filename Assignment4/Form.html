@@ -7,7 +7,18 @@
   <body>
     <div id="container">
       <main>
-        <button type="button" id="ai-button" onclick="">🤖 AI Assistant</button>
+        <button type="button" id="ai-button">🤖 AI Assistant</button>
+
+        <div id="chat-window" style="display: none">
+          <div id="chat-messages"></div>
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button id="chat-send">Send</button>
+        </div>
+
         <h2>Feeback</h2>
         <h3>Love something? Hate something? Let us know!</h3>
         Note : Fields marked with an asterisk(*) are mandatory

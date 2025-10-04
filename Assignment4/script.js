@@ -283,3 +283,44 @@ form.addEventListener("reset", function () {
   if (addressCounter)
     addressCounter.innerHTML = `<label>&#8203;</label>0/20 characters used`;
 });
+
+const aiButton = document.getElementById("ai-button");
+const chatWindow = document.getElementById("chat-window");
+const chatMessages = document.getElementById("chat-messages");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+
+aiButton.addEventListener("click", () => {
+  chatWindow.style.display =
+    chatWindow.style.display === "none" ? "flex" : "none";
+  chatInput.focus();
+});
+
+function addMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.textContent = `${sender}: ${text}`;
+  msg.style.margin = "5px 0";
+  msg.style.wordWrap = "break-word";
+  msg.style.fontSize = "14px";
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  addMessage("You", text);
+
+  setTimeout(() => {
+    addMessage("AI", "This is a sample response to: " + text);
+  }, 500);
+
+  chatInput.value = "";
+}
+
+chatSend.addEventListener("click", sendMessage);
+
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
