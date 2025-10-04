@@ -28,6 +28,9 @@ let isCommentsValid = false;
 function validateForm(event) {
   event.preventDefault();
   if (isEmailValid && isNameValid && isPhoneValid) {
+    radios.forEach((radio) => {
+      radio.checked = false;
+    });
     firstName.value = "";
     lastName.value = "";
     emailId.value = "";
