@@ -6,3 +6,4 @@ let phoneNumber = document.getElementById("phoneNumber");
 let zipcode = document.getElementById("zipcode");
 let checkbox = document.querySelectorAll('input[type="checkbox"]');
 let feedbackForm = document.getElementById("feedbackForm");
+let comments = document.getElementById("comments");
