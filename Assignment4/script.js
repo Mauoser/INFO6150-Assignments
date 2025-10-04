@@ -33,6 +33,7 @@ let isCommentsValid = false;
 let isCheckboxValid = false;
 let isTitleValid = false;
 let isCampusValid = false;
+let isCampusFeedbackValid = true;
 
 function validateForm(event) {
   event.preventDefault();
