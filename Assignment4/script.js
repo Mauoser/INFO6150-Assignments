@@ -1,10 +1,10 @@
-let radio = document.querySelectorAll('input[type="radio"]');
+let radios = document.querySelectorAll('input[type="radio"]');
 let firstName = document.getElementById("firstName");
 let lastName = document.getElementById("lastName");
 let emailId = document.getElementById("emailId");
 let phoneNumber = document.getElementById("phoneNumber");
 let zipcode = document.getElementById("zipcode");
-let checkbox = document.querySelectorAll('input[type="checkbox"]');
+let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 let form = document.getElementById("feedbackForm");
 let comments = document.getElementById("comments");
 
@@ -34,6 +34,10 @@ function validateForm(event) {
     phoneNumber.value = "";
     zipcode.value = "";
     comments.value = "";
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
     alert("Form submitted successfully!");
   } else {
     alert("Please fill out the form correctly before submitting.");
