@@ -51,6 +51,15 @@ function validateForm(event) {
     });
 
     alert("Form submitted successfully!");
+
+    isNameValid = false;
+    isEmailValid = false;
+    isPhoneValid = false;
+    isZipcodeValid = false;
+    isCommentsValid = false;
+    isCheckboxValid = false;
+    isTitleValid = false;
+    submit.disabled = true;
   } else {
     alert("Please fill out the form correctly before submitting.");
   }
