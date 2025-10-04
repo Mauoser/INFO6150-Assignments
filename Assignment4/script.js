@@ -111,6 +111,14 @@ checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", validateCheckboxes);
 });
 
+radios.forEach((radio) => {
+  radio.addEventListener("change", function () {
+    isTitleValid =
+      document.querySelector('input[name="title"]:checked') != null;
+    updateSubmitButton();
+  });
+});
+
 function enableSubmit() {
   if (
     isNameValid &&
