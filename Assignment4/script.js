@@ -38,7 +38,6 @@ let isCampusFeedbackValid = true;
 function validateForm(event) {
   event.preventDefault();
 
-  // Gather form values
   const title =
     document.querySelector('input[name="title"]:checked')?.value || "";
   const first = firstName.value.trim();
@@ -46,7 +45,7 @@ function validateForm(event) {
   const email = emailId.value.trim();
   const phone = phoneNumber.value.trim();
   const zip = zipcode.value.trim();
-  const address2 = streetAddress2.value.trim(); // Optional
+  const address2 = streetAddress2.value.trim();
   const sources = Array.from(
     document.querySelectorAll('input[name="source"]:checked')
   )
@@ -56,13 +55,11 @@ function validateForm(event) {
   const campusFeedback = document.getElementById("campusFeedback")?.value || "";
   const comment = comments.value.trim();
 
-  // Show table container
   const tableContainer = document.getElementById("submission-table-container");
   tableContainer.style.display = "block";
 
   const tbody = document.querySelector("#submission-table tbody");
 
-  // Create new row
   const row = document.createElement("tr");
   row.innerHTML = `
     <td>${title}</td>
@@ -79,7 +76,6 @@ function validateForm(event) {
   `;
   tbody.appendChild(row);
 
-  // Reset the form
   form.reset();
   document.getElementById("campus-box").innerHTML = "";
   const addressCounter = document.getElementById("streetAddress2-counter");
@@ -99,8 +95,6 @@ function validateForm(event) {
 
   const errors = document.querySelectorAll(".error");
   errors.forEach((err) => (err.style.display = "none"));
-
-  alert("Form submitted successfully!");
 }
 
 function validate(event) {
@@ -289,6 +283,7 @@ const chatWindow = document.getElementById("chat-window");
 const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
 const chatSend = document.getElementById("chat-send");
+const chatClose = document.getElementById("chat-close");
 
 const answers = {
   email:
@@ -360,3 +355,11 @@ function addMessage(sender, text) {
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+aiButton.addEventListener("click", () => {
+  chatWindow.style.display = "flex";
+});
+
+chatClose.addEventListener("click", () => {
+  chatWindow.style.display = "none";
+});

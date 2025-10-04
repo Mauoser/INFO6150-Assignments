@@ -65,32 +65,40 @@ main {
 }
 
 #chat-window {
-  position: fixed;
-  bottom: 70px;
-  right: 20px;
   width: 300px;
   height: 400px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background: #fff;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
-#chat-input {
-  padding: 8px;
-  border: 1px;
-  border-top: 1px solid #ccc;
-  flex-shrink: 0;
-}
-
-#chat-send {
-  margin: 2px;
-  padding: 8px;
-  border: none;
+#chat-header {
   background-color: #007bff;
-  color: #fff;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#chat-header #chat-title {
+  font-size: 16px;
+}
+
+#chat-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -116,28 +124,29 @@ main {
   align-self: flex-end;
   background-color: #007bff;
   color: #fff;
+  border-bottom-right-radius: 0;
 }
 
 .message.ai {
   align-self: flex-start;
   background-color: #e5e5e5;
   color: #333;
+  border-bottom-left-radius: 0;
 }
 
 #chat-input-area {
   display: flex;
   padding: 10px;
-  gap: 5px; /* space between input and button */
+  gap: 5px;
   border-top: 1px solid #ccc;
 }
 
 #chat-input-area input {
-  flex: 1; /* input takes all available space */
+  flex: 1;
   padding: 8px 12px;
   border-radius: 20px;
   border: 1px solid #ccc;
   outline: none;
-  font-size: 14px;
 }
 
 #chat-input-area button {
