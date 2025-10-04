@@ -335,7 +335,7 @@ function sendMessage() {
 
   setTimeout(() => {
     addMessage("AI", response);
-  }, 300);
+  }, 500);
 
   chatInput.value = "";
 }
@@ -345,3 +345,18 @@ chatSend.addEventListener("click", sendMessage);
 chatInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") sendMessage();
 });
+
+function addMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.classList.add("message");
+
+  if (sender === "You") {
+    msg.classList.add("user");
+  } else {
+    msg.classList.add("ai");
+  }
+
+  msg.textContent = text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
