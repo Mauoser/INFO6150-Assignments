@@ -38,20 +38,53 @@ let isCampusFeedbackValid = true;
 function validateForm(event) {
   event.preventDefault();
 
-  radios.forEach((radio) => {
-    radio.checked = false;
-  });
-  firstName.value = "";
-  lastName.value = "";
-  emailId.value = "";
-  phoneNumber.value = "";
-  zipcode.value = "";
-  comments.value = "";
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-  });
+  // Gather form values
+  const title =
+    document.querySelector('input[name="title"]:checked')?.value || "";
+  const first = firstName.value.trim();
+  const last = lastName.value.trim();
+  const email = emailId.value.trim();
+  const phone = phoneNumber.value.trim();
+  const zip = zipcode.value.trim();
+  const address2 = streetAddress2.value.trim(); // Optional
+  const sources = Array.from(
+    document.querySelectorAll('input[name="source"]:checked')
+  )
+    .map((cb) => cb.value)
+    .join(", ");
+  const selectedCampus = campus.value;
+  const campusFeedback = document.getElementById("campusFeedback")?.value || "";
+  const comment = comments.value.trim();
 
-  alert("Form submitted successfully!");
+  // Show table container
+  const tableContainer = document.getElementById("submission-table-container");
+  tableContainer.style.display = "block";
+
+  const tbody = document.querySelector("#submission-table tbody");
+
+  // Create new row
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${title}</td>
+    <td>${first}</td>
+    <td>${last}</td>
+    <td>${email}</td>
+    <td>${phone}</td>
+    <td>${zip}</td>
+    <td>${address2}</td>
+    <td>${sources}</td>
+    <td>${selectedCampus}</td>
+    <td>${campusFeedback}</td>
+    <td>${comment}</td>
+  `;
+  tbody.appendChild(row);
+
+  // Reset the form
+  form.reset();
+  document.getElementById("campus-box").innerHTML = "";
+  const addressCounter = document.getElementById("streetAddress2-counter");
+  if (addressCounter)
+    addressCounter.innerHTML = `<label>&#8203;</label>0/20 characters used`;
 
   isNameValid = false;
   isEmailValid = false;
@@ -60,7 +93,14 @@ function validateForm(event) {
   isCommentsValid = false;
   isCheckboxValid = false;
   isTitleValid = false;
+  isCampusValid = false;
+  isCampusFeedbackValid = true;
   submit.disabled = true;
+
+  const errors = document.querySelectorAll(".error");
+  errors.forEach((err) => (err.style.display = "none"));
+
+  alert("Form submitted successfully!");
 }
 
 function validate(event) {

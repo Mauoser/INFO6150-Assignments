@@ -27,3 +27,38 @@ main {
 #campusFeedback {
   margin-left: 10px;
 }
+
+#submission-table-container {
+  width: 90%;
+  margin: 30px auto;
+}
+
+#submission-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#submission-table th,
+#submission-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+#submission-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+#ai-button {
+  background-color: royalblue;
+  color: white;
+  margin-left: 80%;
+  border-radius: 16px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+}
