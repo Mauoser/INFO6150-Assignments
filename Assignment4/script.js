@@ -149,10 +149,9 @@ function enableSubmit() {
 }
 
 streetAddress2.addEventListener("input", function () {
-  let streetAddress2Counter = document.getElementById("streetAddress2-counter");
+  const addressCounter = document.getElementById("streetAddress2-counter");
   let currentLength = streetAddress2.value.length;
-  let maxLength = streetAddress2.getAttribute("maxlength");
-  streetAddress2Counter.innerHTML = `<label>&#8203;</label>${currentLength}/${maxLength} characters used`;
+  addressCounter.innerHTML = `<label>&#8203;</label>${currentLength}/20 characters used`;
 });
 
 campus.addEventListener("change", function () {
@@ -193,4 +192,25 @@ campus.addEventListener("change", function () {
       }
     });
   }
+});
+
+form.addEventListener("reset", function () {
+  isNameValid = false;
+  isEmailValid = false;
+  isPhoneValid = false;
+  isZipcodeValid = false;
+  isCommentsValid = false;
+  isCheckboxValid = false;
+  isTitleValid = false;
+  isCampusValid = false;
+  submit.disabled = true;
+
+  const errors = document.querySelectorAll(".error");
+  errors.forEach((err) => (err.style.display = "none"));
+
+  document.getElementById("campus-box").innerHTML = "";
+
+  const addressCounter = document.getElementById("streetAddress2-counter");
+  if (addressCounter)
+    addressCounter.innerHTML = `<label>&#8203;</label>0/20 characters used`;
 });
