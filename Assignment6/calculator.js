@@ -42,4 +42,13 @@ $(document).ready(() => {
     $errEl.text("");
     return true;
   }
+
+  $num1.on("focus", function () {
+    $num1Error.text("");
+    $calcError.text("");
+  });
+  $num2.on("focus", function () {
+    $num2Error.text("");
+    $calcError.text("");
+  });
 });
