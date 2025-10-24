@@ -30,4 +30,16 @@ $(document).ready(() => {
   const $result = $("#result");
   const $ops = $(".op");
   const $logoutBtn = $("#logoutBtn");
+
+  const numberRe = /^-?\d+(\.\d+)?$/;
+
+  function validateNumberField($el, $errEl) {
+    const value = $el.val().trim();
+    if (!value || !numberRe.test(value)) {
+      $errEl.text("Please enter a valid number");
+      return false;
+    }
+    $errEl.text("");
+    return true;
+  }
 });
