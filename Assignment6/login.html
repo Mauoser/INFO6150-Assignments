@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Login</title>
     <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <main class="container">
+      <div class="card">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <label for="email">Email</label>
+          <input id="email" type="email" />
+
+          <div class="error" id="emailError"></div>
+
+          <label for="password">Password</label>
+          <input id="password" type="password" />
+          <div class="error" id="passwordError"></div>
+
+          <label><input id="remember" type="checkbox" /> Remember Me</label>
+
+          <button id="loginBtn" type="button" disabled>Login</button>
+          <div class="error" id="loginError"></div>
+          <div class="success" id="loginSuccess"></div>
+        </form>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
