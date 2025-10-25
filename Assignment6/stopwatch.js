@@ -20,6 +20,10 @@ $(document).ready(() => {
     });
   }
 
+  $("#start-btn").click(async function () {
+    await startTimer();
+  });
+
   $("#reset-btn").click(function () {
     clearInterval(timer);
     elapsed = 0;
@@ -65,3 +69,79 @@ function validateFields() {
 $("#event-date, #event-name").on("focus", function () {
   $(this).next(".error").text("");
 });
+
+$("#start-btn").click(async function () {
+  if (!validateFields()) return;
+
+  $("#event-date, #event-name").prop("disabled", true);
+  $(this).prop("disabled", true);
+  $("#pause-resume-btn, #stop-save-btn").prop("disabled", false);
+
+  await startTimer();
+});
+
+$("#pause-resume-btn").click(function () {
+  if (isPaused) {
+    startTimer();
+    $(this).text("Pause");
+    isPaused = false;
+  } else {
+    clearInterval(timer);
+    $(this).text("Resume");
+    isPaused = true;
+  }
+});
+
+$("#stop-save-btn").click(function () {
+  clearInterval(timer);
+
+  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
+  sessions.unshift({
+    date: $("#event-date").val(),
+    name: $("#event-name").val().trim(),
+    duration: formatTime(elapsed),
+  });
+  localStorage.setItem("sessions", JSON.stringify(sessions));
+
+  elapsed = 0;
+  $("#timer").text("00:00:00");
+  $("#start-btn").prop("disabled", false);
+  $("#pause-resume-btn, #stop-save-btn").prop("disabled", true);
+  $("#pause-resume-btn").text("Pause");
+  $("#event-date, #event-name").prop("disabled", false);
+
+  renderHistory();
+});
+
+function renderHistory(filter = "") {
+  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
+  const filtered = filter
+    ? sessions.filter((s) => s.date === filter)
+    : sessions;
+
+  const $historyList = $("#history-list");
+  $historyList.empty();
+
+  if (filtered.length === 0) {
+    $historyList.html("<p>No sessions recorded yet</p>");
+  } else {
+    filtered.forEach((s) => {
+      $historyList.append(
+        `<div class="history-item"><strong>${s.date}</strong> - ${s.name} - ${s.duration}</div>`
+      );
+    });
+  }
+
+  $("#total-sessions").text(filtered.length);
+  let totalSeconds = filtered.reduce((acc, s) => {
+    const [h, m, s_] = s.duration.split(":").map(Number);
+    return acc + h * 3600 + m * 60 + s_;
+  }, 0);
+  $("#total-time").text(formatTime(totalSeconds));
+}
+
+$("#filter-date").on("change", function () {
+  renderHistory($(this).val());
+});
+
+renderHistory();
