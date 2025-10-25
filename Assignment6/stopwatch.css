@@ -1,0 +1,13 @@
+#timer {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+}
+
+#history {
+  margin-top: 20px;
+}
