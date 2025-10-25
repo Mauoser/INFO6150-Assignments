@@ -51,4 +51,21 @@ $(document).ready(() => {
     $num2Error.text("");
     $calcError.text("");
   });
+
+  const calculate = (num1, num2, operation) => {
+    const a = Number(num1);
+    const b = Number(num2);
+
+    switch (operation) {
+      case "add":
+        return a + b;
+      case "subtract":
+        return a - b;
+      case "multiply":
+        return a * b;
+      case "divide":
+        if (b === 0) return null;
+        return a / b;
+    }
+  };
 });
