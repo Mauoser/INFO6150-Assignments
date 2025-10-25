@@ -68,4 +68,28 @@ $(document).ready(() => {
         return a / b;
     }
   };
+
+  $ops.on("click", function () {
+    $calcError.text("");
+
+    const operation = $(this).data("op");
+    const ok1 = validateNumberField($num1, $num1Error);
+    const ok2 = validateNumberField($num2, $num2Error);
+    if (!ok1 || !ok2) {
+      $result.val("");
+      return;
+    }
+
+    const val1 = $num1.val().trim();
+    const val2 = $num2.val().trim();
+    const res = calculate(val1, val2, operation);
+
+    if (res === null) {
+      $calcError.text("Cannot divide by zero");
+      $result.val("");
+      return;
+    }
+
+    $result.val(res).hide().fadeIn(150);
+  });
 });
