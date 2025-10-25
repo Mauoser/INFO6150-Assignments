@@ -1,4 +1,4 @@
-# Part A: Calculator with User Login
+# Calculator with User Login
 
 ## Description:
 
@@ -67,6 +67,6 @@ and maintain a local stored history.
 
 1. Download or clone the project folder to your computer.
 2. git clone https://github.com/Mauoser/INFO6150-Assignments.git
-3. Open the Assignment6 folder.
+3. Open the Part A folder in the Assignment6 folder.
 4. Run the app by opening stopwatch.html in your web browser.
 5. Click Start to begin the timer, Pause to pause the timer, Reset to clear the timer, and Stop to stop and save your session.
