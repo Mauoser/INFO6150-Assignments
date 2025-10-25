@@ -14,6 +14,9 @@
   <body>
     <main class="container">
       <div class="card">
+        <div class="heading">
+          <h1>Calculator 🧮</h1>
+        </div>
         <header>
           <h2 id="welcomeMessage"></h2>
           <button id="logoutBtn">Logout</button>
@@ -33,11 +36,13 @@
           </div>
 
           <div class="operations">
-            <button class="op" data-op="add">Add</button>
-            <button class="op" data-op="subtract">Subtract</button>
-            <button class="op" data-op="multiply">Multiply</button>
-            <button class="op" data-op="divide">Divide</button>
+            <button class="op" data-op="add">+</button>
+            <button class="op" data-op="subtract">−</button>
+            <button class="op" data-op="multiply">×</button>
+            <button class="op" data-op="divide">÷</button>
           </div>
+
+          <small class="error" id="calcError"></small>
 
           <div class="result">
             <label>Result</label>

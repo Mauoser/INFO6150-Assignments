@@ -43,11 +43,11 @@ $(document).ready(() => {
     return true;
   }
 
-  $num1.on("focus", function () {
+  $num1.on("focus", () => {
     $num1Error.text("");
     $calcError.text("");
   });
-  $num2.on("focus", function () {
+  $num2.on("focus", () => {
     $num2Error.text("");
     $calcError.text("");
   });
@@ -64,8 +64,9 @@ $(document).ready(() => {
       case "multiply":
         return a * b;
       case "divide":
-        if (b === 0) return null;
-        return a / b;
+        return b === 0 ? null : a / b;
+      default:
+        return NaN;
     }
   };
 
@@ -90,14 +91,20 @@ $(document).ready(() => {
       return;
     }
 
+    if (Number.isNaN(res)) {
+      $calcError.text("An unexpected error occurred");
+      $result.val("");
+      return;
+    }
+
     $result.val(res).hide().fadeIn(150);
   });
 
-  $logoutBtn.on("click", function () {
+  $logoutBtn.on("click", () => {
     sessionStorage.removeItem("calcAppSession");
     localStorage.removeItem("calcAppSession");
 
-    $("main").fadeOut(400, function () {
+    $("main").fadeOut(400, () => {
       window.location.href = "login.html";
     });
   });

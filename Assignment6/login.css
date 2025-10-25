@@ -4,22 +4,26 @@ body {
   font-family: Arial, sans-serif;
   color: #111;
 }
+
 .container {
   max-width: 600px;
   margin: 40px auto;
   padding: 16px;
 }
+
 .card {
   background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
+
 label {
   display: block;
   margin-top: 10px;
   color: #555;
 }
+
 input {
   width: 96%;
   padding: 10px;
@@ -27,18 +31,21 @@ input {
   border-radius: 6px;
   border: 1px solid #ddd;
 }
+
 .error {
   color: #d9534f;
   font-size: 13px;
   min-height: 18px;
   margin-top: 6px;
 }
+
 .success {
   color: #2aa653;
   font-size: 13px;
   min-height: 18px;
   margin-top: 6px;
 }
+
 button {
   font-size: 1.2em;
   width: 100%;
@@ -50,6 +57,7 @@ button {
   color: white;
   cursor: pointer;
 }
+
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
