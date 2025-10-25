@@ -63,6 +63,7 @@ body {
 }
 .btn.pause {
   background-color: #ffc107;
+  color: #000;
 }
 .btn.stop {
   background-color: #dc3545;
