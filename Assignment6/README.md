@@ -37,7 +37,7 @@ This is a simple web application that lets users log in with a username and pass
    - zhang.l5@northeastern.edu
    - password123
 6. You’ll be redirected to calculator.html, where you can try the calculator.
-7. Make sure both login.html, calculator.html, and their JavaScript files are in the same folder so the redirect and localStorage work correctly.
+7. Make sure both login.html, calculator.html, and their JavaScript files are in the same folder so the redirect and localStorage work correctly.\
 
 # Part B: Event Stopwatch with Session Logging
 
