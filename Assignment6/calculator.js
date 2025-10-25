@@ -92,4 +92,13 @@ $(document).ready(() => {
 
     $result.val(res).hide().fadeIn(150);
   });
+
+  $logoutBtn.on("click", function () {
+    sessionStorage.removeItem("calcAppSession");
+    localStorage.removeItem("calcAppSession");
+
+    $("main").fadeOut(400, function () {
+      window.location.href = "login.html";
+    });
+  });
 });
