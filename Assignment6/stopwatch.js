@@ -1,63 +1,37 @@
-let elapsed = 0;
-let timer = null;
+$(document).ready(() => {
+  let timer = null;
+  let elapsed = 0;
+  let isPaused = false;
 
-function formatTime(seconds) {
-  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
-  const s = String(seconds % 60).padStart(2, "0");
-  return `${h}:${m}:${s}`;
-}
-
-document.getElementById("start-btn").addEventListener("click", () => {
-  timer = setInterval(() => {
-    elapsed++;
-    document.getElementById("timer").textContent = formatTime(elapsed);
-  }, 1000);
-});
-
-document.getElementById("pause-btn").addEventListener("click", () => {
-  clearInterval(timer);
-});
-
-document.getElementById("reset-btn").addEventListener("click", () => {
-  clearInterval(timer);
-  elapsed = 0;
-  document.getElementById("timer").textContent = "00:00:00";
-});
-
-document.getElementById("stop-btn").addEventListener("click", () => {
-  clearInterval(timer);
-
-  const date = document.getElementById("event-date").value;
-  const name = document.getElementById("event-name").value;
-
-  if (!date || !name) {
-    alert("Please enter date and event name");
-    return;
+  function formatTime(sec) {
+    const h = String(Math.floor(sec / 3600)).padStart(2, "0");
+    const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+    const s = String(sec % 60).padStart(2, "0");
+    return `${h}:${m}:${s}`;
   }
 
-  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
-  sessions.unshift({ date, name, duration: formatTime(elapsed) });
-  localStorage.setItem("sessions", JSON.stringify(sessions));
-
-  elapsed = 0;
-  document.getElementById("timer").textContent = "00:00:00";
-
-  renderHistory();
-});
-
-function renderHistory() {
-  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
-  const historyDiv = document.getElementById("history");
-  historyDiv.innerHTML = "<h2>Session History</h2>";
-
-  if (sessions.length === 0) {
-    historyDiv.innerHTML += "<p>No sessions recorded yet</p>";
-  } else {
-    sessions.forEach((s) => {
-      historyDiv.innerHTML += `<p>${s.date} - ${s.name} - ${s.duration}</p>`;
+  async function startTimer() {
+    return new Promise((resolve) => {
+      timer = setInterval(() => {
+        elapsed++;
+        $("#timer").text(formatTime(elapsed));
+      }, 1000);
+      resolve();
     });
   }
-}
 
-renderHistory();
+  $("#start-btn").click(async function () {
+    await startTimer();
+  });
+
+  $("#reset-btn").click(function () {
+    clearInterval(timer);
+    elapsed = 0;
+    $("#timer").text("00:00:00");
+    isPaused = false;
+    $("#pause-resume-btn").text("Pause").prop("disabled", true);
+    $("#stop-save-btn").prop("disabled", true);
+    $("#start-btn").prop("disabled", false);
+    $("#event-date, #event-name").prop("disabled", false);
+  });
+});
