@@ -12,28 +12,50 @@
     ></script>
   </head>
   <body>
-    <h1>Event Stopwatch</h1>
+    <div class="container">
+      <div class="timer-display" id="timer">00:00:00</div>
 
-    <div id="timer">00:00:00</div>
+      <div class="event-details">
+        <div class="form-group">
+          <label for="event-date">Date:</label>
+          <input type="date" id="event-date" />
+          <div class="error" id="date-error"></div>
+        </div>
+        <div class="form-group">
+          <label for="event-name">Event Name:</label>
+          <input
+            type="text"
+            id="event-name"
+            placeholder="What are you timing?"
+          />
+          <div class="error" id="name-error"></div>
+        </div>
+      </div>
 
-    <div>
-      <label for="event-date">Date:</label>
-      <input type="date" id="event-date" />
+      <div class="controls">
+        <button id="start-btn" class="btn start">Start</button>
+        <button id="pause-resume-btn" class="btn pause" disabled>Pause</button>
+        <button id="stop-save-btn" class="btn stop" disabled>
+          Stop & Save
+        </button>
+        <button id="reset-btn" class="btn reset">Reset</button>
+      </div>
 
-      <label for="event-name">Event Name:</label>
-      <input type="text" id="event-name" placeholder="What are you timing?" />
+      <div class="history-section">
+        <h2>Session History</h2>
+        <div class="filter">
+          <label for="filter-date">Filter by date:</label>
+          <input type="date" id="filter-date" />
+        </div>
+        <div class="statistics">
+          <p>Total sessions: <span id="total-sessions">0</span></p>
+          <p>Total time: <span id="total-time">00:00:00</span></p>
+        </div>
+        <div id="history-list">
+          <p>No sessions recorded yet</p>
+        </div>
+      </div>
     </div>
-
-    <button id="start-btn">Start</button>
-    <button id="pause-btn">Pause</button>
-    <button id="stop-btn">Stop & Save</button>
-    <button id="reset-btn">Reset</button>
-
-    <div id="history">
-      <h2>Session History</h2>
-      <p>No sessions recorded yet</p>
-    </div>
-
     <script src="stopwatch.js"></script>
   </body>
 </html>

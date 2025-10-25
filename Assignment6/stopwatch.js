@@ -24,3 +24,40 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   elapsed = 0;
   document.getElementById("timer").textContent = "00:00:00";
 });
+
+document.getElementById("stop-btn").addEventListener("click", () => {
+  clearInterval(timer);
+
+  const date = document.getElementById("event-date").value;
+  const name = document.getElementById("event-name").value;
+
+  if (!date || !name) {
+    alert("Please enter date and event name");
+    return;
+  }
+
+  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
+  sessions.unshift({ date, name, duration: formatTime(elapsed) });
+  localStorage.setItem("sessions", JSON.stringify(sessions));
+
+  elapsed = 0;
+  document.getElementById("timer").textContent = "00:00:00";
+
+  renderHistory();
+});
+
+function renderHistory() {
+  const sessions = JSON.parse(localStorage.getItem("sessions") || "[]");
+  const historyDiv = document.getElementById("history");
+  historyDiv.innerHTML = "<h2>Session History</h2>";
+
+  if (sessions.length === 0) {
+    historyDiv.innerHTML += "<p>No sessions recorded yet</p>";
+  } else {
+    sessions.forEach((s) => {
+      historyDiv.innerHTML += `<p>${s.date} - ${s.name} - ${s.duration}</p>`;
+    });
+  }
+}
+
+renderHistory();
