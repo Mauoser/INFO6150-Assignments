@@ -14,3 +14,13 @@ document.getElementById("start-btn").addEventListener("click", () => {
     document.getElementById("timer").textContent = formatTime(elapsed);
   }, 1000);
 });
+
+document.getElementById("pause-btn").addEventListener("click", () => {
+  clearInterval(timer);
+});
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  clearInterval(timer);
+  elapsed = 0;
+  document.getElementById("timer").textContent = "00:00:00";
+});
