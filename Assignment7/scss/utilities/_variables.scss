@@ -1,20 +1,14 @@
-%btn {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 8px 20px;
-    margin: 3px;
+$primary-color: #004080;
+$accent-color: #ff8a00;
+$muted: #f4f6f8;
+$text-color: #222;
+$radius: 12px;
+$base-font-size: 16px;
 
-    &:hover {
-        transform: scale(.98);
-    }
-}
-
-.btn-primary {
-    @extend %btn;
-    @include set-background(lighten($primary-color, 10));
-}
-
-.btn-secondary {
-    @extend %btn;
-    @include set-background($secondary-color);
+:root {
+  --primary: #{$primary-color};
+  --accent: #{$accent-color};
+  --muted: #{$muted};
+  --text: #{$text-color};
+  --radius: #{$radius};
 }
