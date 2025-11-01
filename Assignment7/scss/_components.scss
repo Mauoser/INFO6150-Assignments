@@ -1,0 +1,18 @@
+$themes: (primary, secondary);
+
+@each $theme in $themes {
+  .button-#{$theme} {
+    background-color: if($theme == primary, $primary-color, $secondary-color);
+    color: white;
+    padding: $spacing-unit;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+
+    &:hover {
+      background-color: darken(
+        if($theme == primary, $primary-color, $secondary-color),
+        10%
+      );
+    }
+  }
+}
