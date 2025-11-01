@@ -1,9 +1,13 @@
 :root {
-  --primary: #004080;
-  --accent: #ff8a00;
-  --muted: #f4f6f8;
-  --text: #222;
-  --radius: 12px;
+  --primary-color: #004080;
+  --secondary-color: #f7f9fc;
+  --text-color: #333;
+}
+
+:root {
+  --primary-color: #004080;
+  --secondary-color: #f7f9fc;
+  --text-color: #333;
 }
 
 * {
@@ -47,4 +51,4 @@ h3 {
 
 p {
   margin-bottom: 0.75rem;
-}/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=style.css.map */
