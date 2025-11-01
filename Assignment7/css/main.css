@@ -50,33 +50,88 @@ body {
 header {
   background-color: #003366;
   color: white;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+}
+header h1 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
 }
 header .nav {
-  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 header .nav__link {
-  color: white;
-  margin: 0 1rem;
+  margin: 0.25rem 0.5rem;
   text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+header .nav__link--active {
+  text-decoration: underline;
 }
 header .nav__link:hover {
   color: var(--link-hover);
 }
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  header h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  header .nav {
+    margin-top: 0;
+  }
+}
 
 main {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
 }
-main h3 {
+main section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+main section h3 {
   color: #003366;
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+main section p {
+  margin-bottom: 1rem;
+}
+main section .links a {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border 0.3s;
+}
+main section .links a:hover {
+  border-bottom: 1px dashed var(--link-hover);
+}
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 footer {
@@ -84,18 +139,48 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem;
-  margin-top: 2rem;
+}
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 .resources-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  padding: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+.resources-container .resources-section {
+  display: flex;
+  flex-direction: column;
+}
+.resources-container .resources-section h3 {
+  font-size: 1.2rem;
+  color: #003366;
+  border-bottom: 2px solid #e63946;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.resources-container .resources-section .resource-list {
+  list-style: none;
+  padding: 0;
+}
+.resources-container .resources-section .resource-list li {
+  margin-bottom: 0.5rem;
+}
+.resources-container .resources-section .resource-list li a {
+  color: var(--link-color);
+  text-decoration: none;
+  word-break: break-word;
+}
+.resources-container .resources-section .resource-list li a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
 }
 @media (min-width: 768px) {
   .resources-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media (min-width: 1024px) {
@@ -103,34 +188,25 @@ footer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-.resources-container .resources-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
+
+section h3 {
+  font-size: 1.2rem;
 }
-.resources-container .resources-section h3 {
-  color: #003366;
-  font-size: 1.44rem;
-  border-bottom: 2px solid #e63946;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+section p,
+section .links,
+section .resource-list li a {
+  font-size: 1rem;
+  word-break: break-word;
 }
-.resources-container .resources-section .resource-list {
-  list-style: none;
-  padding: 0;
+section .links a {
+  display: block;
+  margin-bottom: 0.5rem;
 }
-.resources-container .resources-section .resource-list li {
-  margin: 1rem 0;
-}
-.resources-container .resources-section .resource-list li a {
-  color: var(--link-color);
-  text-decoration: none;
-  border-bottom: 1px dashed transparent;
-  transition: border 0.3s;
-}
-.resources-container .resources-section .resource-list li a:hover {
-  border-bottom: 1px dashed var(--link-hover);
+
+section a,
+.resources-section a {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
 }
 
 .button-primary {
