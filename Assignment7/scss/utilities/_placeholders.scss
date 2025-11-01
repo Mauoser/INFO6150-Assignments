@@ -1,11 +1,6 @@
 %card {
-  background: $muted;
-  border-radius: var(--radius);
-  padding: rem(16);
-  box-shadow: 0 rem(4) rem(8) alpha(#000, 0.06);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 rem(8) rem(22) alpha(#000, 0.08);
-  }
+  background: $secondary-color;
+  border-radius: $radius;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }

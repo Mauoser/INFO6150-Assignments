@@ -1,7 +1,7 @@
 @function rem($px) {
-  @return ($px / $base-font-size) * 1rem;
+  @return ($px / 16) * 1rem;
 }
 
-@function alpha($color, $opacity) {
-  @return rgba(red($color), green($color), blue($color), $opacity);
+@function rgba-from-hex($hex, $alpha) {
+  @return rgba(red($hex), green($hex), blue($hex), $alpha);
 }

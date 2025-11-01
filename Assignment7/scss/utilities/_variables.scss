@@ -1,14 +1,11 @@
 $primary-color: #004080;
-$accent-color: #ff8a00;
-$muted: #f4f6f8;
-$text-color: #222;
-$radius: 12px;
-$base-font-size: 16px;
+$secondary-color: #f7f9fc;
+$text-color: #333;
+$radius: 8px;
+$gap: 1rem;
 
 :root {
-  --primary: #{$primary-color};
-  --accent: #{$accent-color};
-  --muted: #{$muted};
-  --text: #{$text-color};
-  --radius: #{$radius};
+  --primary-color: #004080;
+  --secondary-color: #f7f9fc;
+  --text-color: #333;
 }

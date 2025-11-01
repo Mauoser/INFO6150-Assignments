@@ -1,19 +1,13 @@
-@mixin flex-center($dir: row, $gap: 1rem) {
+@mixin flex-center($direction: row, $gap: 0.5rem) {
   display: flex;
-  flex-direction: $dir;
+  flex-direction: $direction;
   align-items: center;
   justify-content: center;
   gap: $gap;
 }
 
-@mixin grid-cols($n) {
+@mixin responsive-grid($columns: 2) {
   display: grid;
-  grid-template-columns: repeat($n, 1fr);
-  gap: rem(16);
-}
-
-@mixin respond-max($breakpoint) {
-  @media (max-width: $breakpoint) {
-    @content;
-  }
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
 }
