@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Better Student Hub</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
+
   <body>
     <header>
       <h1>Better Student Hub</h1>
@@ -16,7 +17,7 @@
     </header>
 
     <main>
-      <section class="card card--canvas">
+      <section>
         <h3>Canvas</h3>
         <p>View course materials and submit assignments</p>
         <div class="links">
@@ -31,7 +32,15 @@
         </div>
       </section>
 
-      <section class="card card--outlook">
+      <section>
+        <h3>Student Hub</h3>
+        <p>View the original student hub</p>
+        <div class="links">
+          <a href="https://student.me.northeastern.edu/" target="_blank">Hub</a>
+        </div>
+      </section>
+
+      <section>
         <h3>Outlook</h3>
         <p>View and send email</p>
         <div class="links">
@@ -43,9 +52,9 @@
         </div>
       </section>
 
-      <section class="card card--qwickly">
+      <section>
         <h3>Qwickly</h3>
-        <p>Check in and view attendance.</p>
+        <p>Check in and view attendance</p>
         <div class="links">
           <a
             href="https://www.qwickly.tools/attendance/takerecord/?request_lms=canvas&domain=northeastern.instructure.com"
@@ -55,24 +64,19 @@
         </div>
       </section>
 
-      <section class="card card--registration">
+      <section>
         <h3>Course Registration</h3>
-        <p>Search and register for courses.</p>
-        <div class="links">
-          <a
-            href="https://nubanner.neu.edu/StudentRegistrationSsb"
-            target="_blank"
-            >Registration</a
-          >
-          <a href="https://searchneu.com/" target="_blank" rel="noopener"
-            >SearchNEU</a
-          >
-        </div>
+        <p>Search and register for courses</p>
+        <a
+          href="https://nubanner.neu.edu/StudentRegistrationSsb"
+          target="_blank"
+          >Registration</a
+        ><a href="https://searchneu.com/" target="_blank">SearchNEU</a>
       </section>
 
-      <section class="card card--finance">
+      <section>
         <h3>Financial Services</h3>
-        <p>View bills and payment plans.</p>
+        <p>View bills and payment plans</p>
         <div class="links">
           <a
             href="https://nu.outsystemsenterprise.com/StudentFinance/ViewBill"
@@ -87,20 +91,18 @@
         </div>
       </section>
 
-      <section class="card card--student">
+      <section>
         <h3>Student Services</h3>
-        <p>Check your registration, records, and account.</p>
-        <div class="links">
-          <a
-            class="btn-primary"
-            href="https://bnrordsp.neu.edu/ssb-prod/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu"
-            target="_blank"
-            >Student</a
-          >
-        </div>
+        <p>Check your registration, records, and account</p>
+        <a
+          class="flex-1 border-2 border-gray-400 hover:bg-blue-300 dark:hover:bg-blue-600 transition-colors duration-300 rounded-xl p-2 text-center"
+          href="https://bnrordsp.neu.edu/ssb-prod/twbkwbis.P_GenMenu?name=bmenu.P_StuMainMnu"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Student</a
+        >
       </section>
     </main>
-
     <footer class="footer">
       <p>© 2025 Better Canvas — Made for Students by Students</p>
     </footer>

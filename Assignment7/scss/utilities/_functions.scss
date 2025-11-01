@@ -1,7 +1,0 @@
-@function rem($px) {
-  @return ($px / 16) * 1rem;
-}
-
-@function rgba-from-hex($hex, $alpha) {
-  @return rgba(red($hex), green($hex), blue($hex), $alpha);
-}

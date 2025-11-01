@@ -1,0 +1,81 @@
+:root {
+  --link-color: #0056b3;
+  --link-hover: #ff4b4b;
+  --border-radius: 10px;
+}
+
+:root {
+  --link-color: #0056b3;
+  --link-hover: #ff4b4b;
+  --border-radius: 10px;
+}
+
+:root {
+  --link-color: #0056b3;
+  --link-hover: #ff4b4b;
+  --border-radius: 10px;
+}
+
+:root {
+  --link-color: #0056b3;
+  --link-hover: #ff4b4b;
+  --border-radius: 10px;
+}
+
+main section {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: transform 0.2s ease;
+}
+main section:hover {
+  transform: translateY(-4px);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+}
+
+header {
+  background-color: #003366;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+header .nav {
+  margin-top: 1rem;
+}
+header .nav__link {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+header .nav__link:hover {
+  color: var(--link-hover);
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+main h3 {
+  color: #003366;
+  font-size: scale-font(1);
+}
+
+footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}/*# sourceMappingURL=main.css.map */
