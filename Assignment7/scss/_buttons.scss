@@ -1,22 +1,23 @@
 %button-base {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   font-weight: 500;
   text-align: center;
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
+  font-family: $font-stack;
 }
 
 .button-primary {
   @extend %button-base;
-  background-color: $primary-color;
-  color: white;
+  background-color: $secondary-color;
+  color: $text-color;
 
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background-color: lighten($secondary-color, 10%);
   }
 
   &:active {
@@ -26,11 +27,11 @@
 
 .button-secondary {
   @extend %button-base;
-  background-color: $secondary-color;
-  color: white;
+  background-color: #374151;
+  color: $text-color;
 
   &:hover {
-    background-color: darken($secondary-color, 10%);
+    background-color: #4b5563;
   }
 
   &:active {
@@ -48,8 +49,8 @@
   .button-primary,
   .button-secondary {
     display: block;
-    width: 100%;
+    width: auto;
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin: 0.25rem 0;
   }
 }

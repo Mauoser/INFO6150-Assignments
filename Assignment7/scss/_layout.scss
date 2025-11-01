@@ -7,7 +7,7 @@ body {
 
 header {
   background-color: $primary-color;
-  color: white;
+  color: $text-color;
   padding: $spacing-unit;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@ main {
     text-align: center;
 
     h3 {
-      color: $primary-color;
+      color: $text-color;
       font-size: 1.2rem;
       margin-bottom: $spacing-unit / 2;
     }
@@ -117,7 +117,7 @@ main {
 
 footer {
   background-color: $primary-color;
-  color: white;
+  color: $text-color;
   text-align: center;
   padding: $spacing-unit;
 
@@ -140,7 +140,7 @@ footer {
 
     h3 {
       font-size: 1.2rem;
-      color: $primary-color;
+      color: $text-color;
       border-bottom: 2px solid $secondary-color;
       padding-bottom: 0.25rem;
       margin-bottom: 0.5rem;
@@ -189,6 +189,7 @@ section {
   }
 
   .links a {
+    color: $text-color;
     display: block;
     margin-bottom: 0.5rem;
   }
@@ -196,4 +197,11 @@ section {
 
 ul {
   text-align: left;
+}
+
+.section-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
 }
