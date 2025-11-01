@@ -1,8 +1,8 @@
-@import "variables";
-@import "mixins";
-@import "utilities";
-@import "functions";
-@import "placeholders";
-@import "layout";
-@import "components";
-@import "buttons";
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/utilities";
+@import "utilities/functions";
+@import "utilities/placeholders";
+@import "layout/layout";
+@import "components/cards";
+@import "components/buttons";

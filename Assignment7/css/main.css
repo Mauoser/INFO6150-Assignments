@@ -80,7 +80,7 @@ header .nav__link {
   font-weight: 500;
 }
 header .nav__link--active {
-  text-decoration: underline;
+  color: #d41b2c;
 }
 header .nav__link:hover {
   color: var(--link-hover);
@@ -239,6 +239,10 @@ ul {
   margin-right: 10px;
 }
 
+.home-section p {
+  margin-bottom: 2rem;
+}
+
 .button-primary {
   background-color: #1f2937;
   color: white;
@@ -263,6 +267,9 @@ ul {
 
 .button-small, .button-secondary, .button-primary {
   display: inline-block;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
   padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius);
   font-weight: 500;
@@ -305,8 +312,9 @@ ul {
   .button-primary,
   .button-secondary {
     display: block;
-    width: auto;
-    text-align: center;
-    margin: 0.25rem 0;
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    margin-bottom: 0.5rem;
   }
 }/*# sourceMappingURL=main.css.map */

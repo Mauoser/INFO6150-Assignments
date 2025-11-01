@@ -1,5 +1,8 @@
 %button-base {
   display: inline-block;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
   padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius);
   font-weight: 500;
@@ -49,8 +52,9 @@
   .button-primary,
   .button-secondary {
     display: block;
-    width: auto;
-    text-align: center;
-    margin: 0.25rem 0;
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    margin-bottom: 0.5rem;
   }
 }

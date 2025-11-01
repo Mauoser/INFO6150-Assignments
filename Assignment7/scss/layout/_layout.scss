@@ -34,7 +34,7 @@ header {
       font-weight: 500;
 
       &--active {
-        text-decoration: underline;
+        color: #d41b2c;
       }
 
       &:hover {
@@ -207,4 +207,8 @@ ul {
   height: 30px;
   object-fit: contain;
   margin-right: 10px;
+}
+
+.home-section p {
+  margin-bottom: 2rem;
 }

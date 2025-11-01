@@ -97,16 +97,23 @@ BetterStudentHub/
 │ └─ qwickly.png
 ├─ css/
 │ └─ style.css (compiled from SCSS)
-└─ scss/
-├─ \_variables.scss
-├─ \_mixins.scss
-├─ \_utilities.scss
-├─ \_functions.scss
-├─ \_placeholders.scss
-├─ \_layout.scss
-├─ \_components.scss
-├─ \_buttons.scss
-└─ main.scss
+scss/
+│
+├─ layout/
+│ ├─ \_layout.scss // header, main, footer, section grid/flex layouts
+│
+├─ components/
+│ ├─ \_buttons.scss // all buttons
+│ ├─ \_cards.scss // %card placeholder and any card-specific styles
+│
+├─ utilities/
+│ ├─ \_variables.scss // colors, fonts, spacing, breakpoints
+│ ├─ \_mixins.scss // flex-center, grid-layout, respond-to mixin
+│ ├─ \_functions.scss // SASS functions like scale-font
+│ ├─ \_placeholders.scss // %card, %button-base, or any reusable placeholders
+│ ├─ \_utilities.scss // keyframes, animations, media helpers
+│
+└─ main.scss // imports all SCSS partials
 
 ---
 
