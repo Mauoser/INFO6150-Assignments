@@ -10,7 +10,7 @@ header {
   color: white;
   padding: $spacing-unit;
   display: flex;
-  flex-direction: column; // stack for mobile
+  flex-direction: column;
   align-items: center;
 
   h1 {
@@ -58,7 +58,7 @@ header {
 
 main {
   display: grid;
-  grid-template-columns: 1fr; // stack on mobile
+  grid-template-columns: 1fr;
   gap: 1rem;
   padding: $spacing-unit;
 
@@ -77,6 +77,19 @@ main {
 
     p {
       margin-bottom: $spacing-unit;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      @include respond-to("tablet") {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     .links a {
@@ -116,7 +129,7 @@ footer {
 
 .resources-container {
   display: grid;
-  grid-template-columns: 1fr; // stack mobile
+  grid-template-columns: 1fr;
   gap: 1rem;
   padding: $spacing-unit;
 
@@ -155,11 +168,11 @@ footer {
   }
 
   @include respond-to("tablet") {
-    grid-template-columns: 1fr 1fr; // 2 columns on tablets
+    grid-template-columns: 1fr 1fr;
   }
 
   @include respond-to("desktop") {
-    grid-template-columns: repeat(3, 1fr); // 3 columns on desktop
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -181,8 +194,6 @@ section {
   }
 }
 
-section a,
-.resources-section a {
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--border-radius);
+ul {
+  text-align: left;
 }

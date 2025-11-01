@@ -112,6 +112,19 @@ main section h3 {
 main section p {
   margin-bottom: 1rem;
 }
+main section .links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (min-width: 768px) {
+  main section .links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 main section .links a {
   display: block;
   margin-bottom: 0.5rem;
@@ -203,10 +216,8 @@ section .links a {
   margin-bottom: 0.5rem;
 }
 
-section a,
-.resources-section a {
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--border-radius);
+ul {
+  text-align: left;
 }
 
 .button-primary {
