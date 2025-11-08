@@ -100,10 +100,65 @@ router.delete("/delete", async (req, res) => {
 router.get("/getAll", async (req, res) => {
   try {
     const users = await User.find({}, "fullName email password").lean();
-    // return users array exactly as required
     return res.status(200).json({ users });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "An error occurred." });
   }
 });
+
+router.post("/uploadImage", upload.single("image"), async (req, res) => {
+  try {
+    const email = req.body.email;
+    if (!email) {
+      if (req.file) {
+        const fs = require("fs");
+        fs.unlinkSync(req.file.path);
+      }
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      if (req.file) {
+        const fs = require("fs");
+        fs.unlinkSync(req.file.path);
+      }
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    if (user.imagePath) {
+      if (req.file) {
+        const fs = require("fs");
+        fs.unlinkSync(req.file.path);
+      }
+      return res
+        .status(400)
+        .json({ error: "Image already exists for this user." });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({
+        error: "Invalid file format. Only JPEG, PNG, and GIF are allowed.",
+      });
+    }
+
+    const relativePath = path
+      .join("/images", req.file.filename)
+      .replace(/\\/g, "/");
+    user.imagePath = relativePath;
+    await user.save();
+
+    return res.status(201).json({
+      message: "Image uploaded successfully.",
+      filePath: relativePath,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      error: "Invalid file format. Only JPEG, PNG, and GIF are allowed.",
+    });
+  }
+});
+
+module.exports = router;
