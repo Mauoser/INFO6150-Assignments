@@ -7,6 +7,162 @@ const upload = require("../middleware/upload");
 const Joi = require("joi");
 const path = require("path");
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management and image upload APIs
+ */
+
+/**
+ * @swagger
+ * /user/create:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - fullName
+ *               - email
+ *               - password
+ *             properties:
+ *               fullName:
+ *                 type: string
+ *                 example: John Doe
+ *               email:
+ *                 type: string
+ *                 example: john.doe@example.com
+ *               password:
+ *                 type: string
+ *                 example: StrongP@ss1
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: Validation failed
+ */
+
+/**
+ * @swagger
+ * /user/edit:
+ *   put:
+ *     summary: Update an existing user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: john.doe@example.com
+ *               fullName:
+ *                 type: string
+ *                 example: Johnathan Doe
+ *               password:
+ *                 type: string
+ *                 example: NewStr0ng!
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       400:
+ *         description: Validation failed
+ *       404:
+ *         description: User not found
+ */
+
+/**
+ * @swagger
+ * /user/delete:
+ *   delete:
+ *     summary: Delete a user by email
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: john.doe@example.com
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       404:
+ *         description: User not found
+ */
+
+/**
+ * @swagger
+ * /user/getAll:
+ *   get:
+ *     summary: Retrieve all users
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: List of all users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 users:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       fullName:
+ *                         type: string
+ *                       email:
+ *                         type: string
+ *                       password:
+ *                         type: string
+ */
+
+/**
+ * @swagger
+ * /user/uploadImage:
+ *   post:
+ *     summary: Upload an image for a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - image
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: john.doe@example.com
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       201:
+ *         description: Image uploaded successfully
+ *       400:
+ *         description: Invalid file format or image already exists
+ *       404:
+ *         description: User not found
+ */
+
 // Validation schemas using Joi
 const createSchema = Joi.object({
   fullName: Joi.string()
