@@ -38,3 +38,6 @@ const swaggerSpec = swaggerJsdoc({
 });
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+const userRoutes = require("./routes/user");
+app.use("/user", userRoutes);
