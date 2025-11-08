@@ -1,4 +1,35 @@
 const Joi = require("joi");
+const express = require("express");
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
+const router = express.Router();
+
+router.post("/create", async (req, res) => {
+  try {
+    const { error } = createSchema.validate(req.body);
+    if (error) return res.status(400).json({ error: "Validation failed." });
+
+    const { fullName, email, password } = req.body;
+
+    const exists = await User.findOne({ email: email.toLowerCase() });
+    if (exists) return res.status(400).json({ error: "Validation failed." });
+
+    const saltRounds = 10;
+    const hashed = await bcrypt.hash(password, saltRounds);
+
+    const user = new User({
+      fullName,
+      email: email.toLowerCase(),
+      password: hashed,
+    });
+    await user.save();
+
+    return res.status(201).json({ message: "User created successfully." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Validation failed." });
+  }
+});
 
 const createSchema = Joi.object({
   fullName: Joi.string()
@@ -7,10 +38,10 @@ const createSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string()
     .min(8)
-    .pattern(/[A-Z]/)
-    .pattern(/[a-z]/)
-    .pattern(/[0-9]/)
-    .pattern(/[\W_]/)
+    .pattern(/[A-Z]/, "uppercase")
+    .pattern(/[a-z]/, "lowercase")
+    .pattern(/[0-9]/, "digit")
+    .pattern(/[\W_]/, "special")
     .required(),
 });
 
