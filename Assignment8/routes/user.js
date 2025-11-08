@@ -4,6 +4,34 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const router = express.Router();
 
+const createSchema = Joi.object({
+  fullName: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .required(),
+  email: Joi.string().email().required(),
+  password: Joi.string()
+    .min(8)
+    .pattern(/[A-Z]/, "uppercase")
+    .pattern(/[a-z]/, "lowercase")
+    .pattern(/[0-9]/, "digit")
+    .pattern(/[\W_]/, "special")
+    .required(),
+});
+
+const updateSchema = Joi.object({
+  email: Joi.string().email().required(),
+  fullName: Joi.string()
+    .pattern(/^[A-Za-z\s]+$/)
+    .optional(),
+  password: Joi.string()
+    .min(8)
+    .pattern(/[A-Z]/)
+    .pattern(/[a-z]/)
+    .pattern(/[0-9]/)
+    .pattern(/[\W_]/)
+    .optional(),
+});
+
 router.post("/create", async (req, res) => {
   try {
     const { error } = createSchema.validate(req.body);
@@ -31,30 +59,25 @@ router.post("/create", async (req, res) => {
   }
 });
 
-const createSchema = Joi.object({
-  fullName: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .required(),
-  email: Joi.string().email().required(),
-  password: Joi.string()
-    .min(8)
-    .pattern(/[A-Z]/, "uppercase")
-    .pattern(/[a-z]/, "lowercase")
-    .pattern(/[0-9]/, "digit")
-    .pattern(/[\W_]/, "special")
-    .required(),
-});
+router.put("/edit", async (req, res) => {
+  try {
+    const { error } = updateSchema.validate(req.body);
+    if (error) return res.status(400).json({ error: "Validation failed." });
 
-const updateSchema = Joi.object({
-  email: Joi.string().email().required(),
-  fullName: Joi.string()
-    .pattern(/^[A-Za-z\s]+$/)
-    .optional(),
-  password: Joi.string()
-    .min(8)
-    .pattern(/[A-Z]/)
-    .pattern(/[a-z]/)
-    .pattern(/[0-9]/)
-    .pattern(/[\W_]/)
-    .optional(),
+    const { email, fullName, password } = req.body;
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) return res.status(404).json({ error: "User not found." });
+
+    if (fullName) user.fullName = fullName;
+    if (password) {
+      const saltRounds = 10;
+      user.password = await bcrypt.hash(password, saltRounds);
+    }
+
+    await user.save();
+    return res.status(200).json({ message: "User updated successfully." });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ error: "Validation failed." });
+  }
 });
