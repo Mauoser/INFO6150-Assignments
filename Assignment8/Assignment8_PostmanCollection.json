@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "d8b8a0f4-1a3e-4a2b-987b-3f1f2c4e5b2a",
+    "name": "Assignment8 Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Assignment 8 - Users API with all endpoints."
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"StrongP@ss1\"\n}"
+        },
+        "url": {
+          "raw": "{{baseURL}}/user/create",
+          "host": ["{{baseURL}}"],
+          "path": ["user", "create"]
+        }
+      }
+    },
+    {
+      "name": "Edit User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"fullName\": \"Johnathan Doe\",\n  \"password\": \"NewStr0ng!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseURL}}/user/edit",
+          "host": ["{{baseURL}}"],
+          "path": ["user", "edit"]
+        }
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john.doe@example.com\"\n}"
+        },
+        "url": {
+          "raw": "{{baseURL}}/user/delete",
+          "host": ["{{baseURL}}"],
+          "path": ["user", "delete"]
+        }
+      }
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/user/getAll",
+          "host": ["{{baseURL}}"],
+          "path": ["user", "getAll"]
+        }
+      }
+    },
+    {
+      "name": "Upload User Image",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "email",
+              "value": "john.doe@example.com",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseURL}}/user/uploadImage",
+          "host": ["{{baseURL}}"],
+          "path": ["user", "uploadImage"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
