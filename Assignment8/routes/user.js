@@ -1,9 +1,13 @@
-const Joi = require("joi");
+// routes/user.js
 const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const router = express.Router();
+const upload = require("../middleware/upload");
+const Joi = require("joi");
+const path = require("path");
 
+// Validation schemas using Joi
 const createSchema = Joi.object({
   fullName: Joi.string()
     .pattern(/^[A-Za-z\s]+$/)
@@ -32,6 +36,7 @@ const updateSchema = Joi.object({
     .optional(),
 });
 
+// 1) POST /user/create
 router.post("/create", async (req, res) => {
   try {
     const { error } = createSchema.validate(req.body);
@@ -39,6 +44,7 @@ router.post("/create", async (req, res) => {
 
     const { fullName, email, password } = req.body;
 
+    // Check duplicate email
     const exists = await User.findOne({ email: email.toLowerCase() });
     if (exists) return res.status(400).json({ error: "Validation failed." });
 
@@ -59,6 +65,8 @@ router.post("/create", async (req, res) => {
   }
 });
 
+// 2) PUT /user/edit
+// expects JSON body with { email, fullName? , password? }
 router.put("/edit", async (req, res) => {
   try {
     const { error } = updateSchema.validate(req.body);
@@ -82,6 +90,8 @@ router.put("/edit", async (req, res) => {
   }
 });
 
+// 3) DELETE /user/delete
+// expects JSON body { email }
 router.delete("/delete", async (req, res) => {
   try {
     const { email } = req.body;
@@ -97,9 +107,11 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
+// 4) GET /user/getAll
 router.get("/getAll", async (req, res) => {
   try {
     const users = await User.find({}, "fullName email password").lean();
+    // return users array exactly as required
     return res.status(200).json({ users });
   } catch (err) {
     console.error(err);
@@ -107,10 +119,13 @@ router.get("/getAll", async (req, res) => {
   }
 });
 
+// 5) POST /user/uploadImage
+// Form-Data fields: email (string), image (file)
 router.post("/uploadImage", upload.single("image"), async (req, res) => {
   try {
     const email = req.body.email;
     if (!email) {
+      // remove uploaded file if any
       if (req.file) {
         const fs = require("fs");
         fs.unlinkSync(req.file.path);
@@ -127,22 +142,25 @@ router.post("/uploadImage", upload.single("image"), async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
+    // if user already has an imagePath set
     if (user.imagePath) {
       if (req.file) {
         const fs = require("fs");
-        fs.unlinkSync(req.file.path);
+        fs.unlinkSync(req.file.path); // remove new uploaded file
       }
       return res
         .status(400)
         .json({ error: "Image already exists for this user." });
     }
 
+    // multer's fileFilter prevents invalid mimetypes by rejecting; but multer sets file to undefined when rejected.
     if (!req.file) {
       return res.status(400).json({
         error: "Invalid file format. Only JPEG, PNG, and GIF are allowed.",
       });
     }
 
+    // Save relative path e.g. /images/filename.ext
     const relativePath = path
       .join("/images", req.file.filename)
       .replace(/\\/g, "/");
