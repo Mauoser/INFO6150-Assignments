@@ -6,6 +6,8 @@ const User = require("../models/User");
 const upload = require("../middleware/upload");
 const Joi = require("joi");
 const path = require("path");
+const jwt = require("jsonwebtoken");
+const SECRET = process.env.JWT_SECRET || "devsecret";
 
 /**
  * @swagger
@@ -162,6 +164,35 @@ const path = require("path");
  *       404:
  *         description: User not found
  */
+
+// POST /user/login
+// Body: { email, password }
+// Response success: { token: "<dummy-or-jwt>", email: "<...>" }
+
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password)
+      return res.status(400).json({ error: "Validation failed." });
+
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) return res.status(404).json({ error: "User not found." });
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(400).json({ error: "Validation failed." });
+
+    // create a simple JWT or a dummy token
+    const token = jwt.sign({ id: user._id, email: user.email }, SECRET, {
+      expiresIn: "1h",
+    });
+    return res
+      .status(200)
+      .json({ token, email: user.email, fullName: user.fullName });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Validation failed." });
+  }
+});
 
 // Validation schemas using Joi
 const createSchema = Joi.object({
