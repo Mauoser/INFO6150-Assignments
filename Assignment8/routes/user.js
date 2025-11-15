@@ -6,8 +6,6 @@ const User = require("../models/User");
 const upload = require("../middleware/upload");
 const Joi = require("joi");
 const path = require("path");
-const jwt = require("jsonwebtoken");
-const SECRET = process.env.JWT_SECRET || "devsecret";
 
 /**
  * @swagger
@@ -167,30 +165,34 @@ const SECRET = process.env.JWT_SECRET || "devsecret";
 
 // POST /user/login
 // Body: { email, password }
-// Response success: { token: "<dummy-or-jwt>", email: "<...>" }
 
+// routes/user.js
 router.post("/login", async (req, res) => {
+  console.log("Login request body:", req.body);
   try {
     const { email, password } = req.body;
-    if (!email || !password)
-      return res.status(400).json({ error: "Validation failed." });
 
+    // Basic validation
+    if (!email || !password) {
+      return res.status(400).json({ error: "Validation failed." });
+    }
+
+    // Find user by email
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user) return res.status(404).json({ error: "User not found." });
 
+    // Compare password with bcrypt
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: "Validation failed." });
 
-    // create a simple JWT or a dummy token
-    const token = jwt.sign({ id: user._id, email: user.email }, SECRET, {
-      expiresIn: "1h",
+    // Return user info
+    return res.status(200).json({
+      email: user.email,
+      fullName: user.fullName,
     });
-    return res
-      .status(200)
-      .json({ token, email: user.email, fullName: user.fullName });
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Validation failed." });
+    console.error("Login error:", err);
+    return res.status(500).json({ error: err.message });
   }
 });
 
@@ -297,7 +299,10 @@ router.delete("/delete", async (req, res) => {
 // 4) GET /user/getAll
 router.get("/getAll", async (req, res) => {
   try {
-    const users = await User.find({}, "fullName email password").lean();
+    const users = await User.find(
+      {},
+      "fullName email password imagePath"
+    ).lean();
     // return users array exactly as required
     return res.status(200).json({ users });
   } catch (err) {
@@ -363,6 +368,65 @@ router.post("/uploadImage", upload.single("image"), async (req, res) => {
     return res.status(500).json({
       error: "Invalid file format. Only JPEG, PNG, and GIF are allowed.",
     });
+  }
+});
+
+const Company = require("../models/Company");
+
+// POST /companyImage
+// Form-Data: companyName (string), image (file)
+router.post("/companyImage", upload.single("image"), async (req, res) => {
+  try {
+    const { companyName } = req.body;
+
+    if (!companyName) {
+      if (req.file) fs.unlinkSync(req.file.path);
+      return res.status(400).json({ error: "Company name is required." });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({
+        error: "Invalid file format. Only JPEG, PNG, and GIF are allowed.",
+      });
+    }
+
+    // Save relative path
+    const relativePath = path
+      .join("/images", req.file.filename)
+      .replace(/\\/g, "/");
+
+    // Check if company already exists
+    let company = await Company.findOne({ companyName });
+    if (company) {
+      // remove old file
+      if (company.imagePath) fs.unlinkSync(`.${company.imagePath}`);
+      company.imagePath = relativePath;
+    } else {
+      company = new Company({ companyName, imagePath: relativePath });
+    }
+
+    await company.save();
+
+    return res.status(201).json({
+      message: "Company image uploaded successfully.",
+      filePath: relativePath,
+      companyName,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Something went wrong." });
+  }
+});
+
+// GET /companyImage
+// Return all companies with their imagePath
+router.get("/companyImage", async (req, res) => {
+  try {
+    const companies = await Company.find({}, "companyName imagePath").lean();
+    return res.status(200).json({ companies });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Something went wrong." });
   }
 });
 

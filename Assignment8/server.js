@@ -9,6 +9,16 @@ const path = require("path");
 
 const app = express();
 
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "http://localhost:3001",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
